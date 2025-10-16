@@ -9,6 +9,15 @@
             font-size: 16px;
         }
 
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0455A4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
         .footer {
             color: gray;
             font-size: 12px;
@@ -17,8 +26,12 @@
     </style>
 </head>
 <body>
-    <h2>Xin chào, {{Name}}!</h2>
-    <p>Đây là email test gửi bằng Gmail SMTP.</p>
-    <div class="footer">© 2025 Thang Demo</div>
+    <p>Xin chào <span style="color:#0455A4; font-size:24px; font-weight:bold;">{{Name}}</span>,</p>
+    <p>Chúc mừng bạn đã đăng ký thành công tài khoản hệ thống Tạp chí điện tử của Công ty Công nghệ THT.</p>
+    <p>Chỉ còn 1 bước cuối cùng. Bạn vui lòng bấm vào link dưới đây để hoàn tất đăng ký.</p>
+    <a class="button" href="https://example.com/verify?token={{Token}}">Xác thực tài khoản</a>
+    <p>Nếu bạn không thực hiện yêu cầu, hãy bỏ qua email này.</p>
+    <p>Trân trọng.</p>
+
 </body>
 </html>

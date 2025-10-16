@@ -1,6 +1,0 @@
-[2025-10-16 13:50:43] [EmailController.cs:19] Đây là test log
-[2025-10-16 13:50:43] [EmailService.cs:35] Đây là test log | Giá trị a từ config
-[2025-10-16 13:54:42] [EmailController.cs:19] Đây là test log
-[2025-10-16 13:54:42] [EmailService.cs:35] Đây là test log | Giá trị a từ config
-[2025-10-16 13:54:43] [EmailController.cs:19] Đây là test log
-[2025-10-16 13:54:43] [EmailService.cs:35] Đây là test log | Giá trị a từ config

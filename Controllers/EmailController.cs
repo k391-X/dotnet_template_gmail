@@ -11,20 +11,28 @@ public class EmailController : ControllerBase
 
     public async Task<IActionResult> SendTest()
     {
-        // Khai báo từng thông tin email rõ ràng
-        string recipientEmail = "cmthang2407@gmail.com";
-        string emailSubject = "Test gửi email từ .NET";
-        //string emailBodyHtml = "<h2>Xin chào!</h2><p>Đây là email test gửi bằng Gmail SMTP.</p>";
-        string senderName = "From Thang Dep Trai";
+        var placeholders = new Dictionary<string, string>
+        {
+            {"Name", "Thang"},
+            {"Token", "123456abcdef"}
+        };
 
-        // Load template và replace biến
-        string emailBodyHtml = EmailTemplateHelper.LoadTemplate(
-            "verify-account",
-            new Dictionary<string, string>
-            {
-                { "Name", "Thang" }
-            }
+        // Build email HTML
+        string emailBodyHtml = EmailTemplateHelper.BuildEmail(
+            bodyTemplateName: "verify-account",
+            placeholders: placeholders
         );
+
+        // Khai báo từng thông tin email rõ ràng
+        // Gửi tới email này
+        string recipientEmail = "cmthang2407@gmail.com";
+
+        // Dòng chữ in đậm đầu tiên của email
+        string emailSubject = "Đăng kí tài khoản thành công";
+
+        //string emailBodyHtml = "<h2>Xin chào!</h2><p>Đây là email test gửi bằng Gmail SMTP.</p>";
+        string senderName = "Công ty Công Nghệ THT";
+
 
         // Gọi service gửi email
         await _emailService.SendEmailAsync(

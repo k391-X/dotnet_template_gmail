@@ -9,7 +9,7 @@ public class EmailController : ControllerBase
     private readonly EmailService _emailService;
     public EmailController(EmailService emailService) => _emailService = emailService;
 
-    public async Task<IActionResult> SendTest()
+    public async Task<IActionResult> VerifyAccount()
     {
         var placeholders = new Dictionary<string, string>
         {
@@ -18,10 +18,39 @@ public class EmailController : ControllerBase
         };
 
         // Build email HTML
-        //string emailBodyHtml = EmailTemplateHelper.BuildEmail(
-        //    bodyTemplateName: "verify-account",
-        //    placeholders: placeholders
-        //);
+        string emailBodyHtml = EmailTemplateHelper.BuildEmail(
+            bodyTemplateName: "verify-account",
+            placeholders: placeholders
+        );
+
+
+        // Khai báo từng thông tin email rõ ràng
+        // Gửi tới email này
+        string recipientEmail = "cmthang2407@gmail.com";
+
+        // Dòng chữ in đậm đầu tiên của email
+        string emailSubject = "Đăng kí tài khoản thành công";
+
+        string senderName = "Công ty Công Nghệ THT";
+
+        // Gọi service gửi email
+        await _emailService.SendEmailAsync(
+            to: recipientEmail,
+            subject: emailSubject,
+            htmlBody: emailBodyHtml,
+            fromMailboxAddress: senderName
+        );
+
+        return Ok("✅ Đã gửi email thành công!");
+    }
+
+    public async Task<IActionResult> ChangePassword()
+    {
+        var placeholders = new Dictionary<string, string>
+        {
+            {"Name", "Thang"},
+            {"Token", "123456abcdef"}
+        };
 
         // Build email HTML
         string emailBodyHtml = EmailTemplateHelper.BuildEmail(
@@ -34,7 +63,6 @@ public class EmailController : ControllerBase
         string recipientEmail = "cmthang2407@gmail.com";
 
         // Dòng chữ in đậm đầu tiên của email
-        //string emailSubject = "Đăng kí tài khoản thành công";
         string emailSubject = "Yêu cầu đổi mật khẩu";
 
 
@@ -52,4 +80,5 @@ public class EmailController : ControllerBase
 
         return Ok("✅ Đã gửi email thành công!");
     }
+
 }

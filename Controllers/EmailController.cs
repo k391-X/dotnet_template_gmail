@@ -18,8 +18,14 @@ public class EmailController : ControllerBase
         };
 
         // Build email HTML
+        //string emailBodyHtml = EmailTemplateHelper.BuildEmail(
+        //    bodyTemplateName: "verify-account",
+        //    placeholders: placeholders
+        //);
+
+        // Build email HTML
         string emailBodyHtml = EmailTemplateHelper.BuildEmail(
-            bodyTemplateName: "verify-account",
+            bodyTemplateName: "change-password",
             placeholders: placeholders
         );
 
@@ -28,7 +34,9 @@ public class EmailController : ControllerBase
         string recipientEmail = "cmthang2407@gmail.com";
 
         // Dòng chữ in đậm đầu tiên của email
-        string emailSubject = "Đăng kí tài khoản thành công";
+        //string emailSubject = "Đăng kí tài khoản thành công";
+        string emailSubject = "Yêu cầu đổi mật khẩu";
+
 
         //string emailBodyHtml = "<h2>Xin chào!</h2><p>Đây là email test gửi bằng Gmail SMTP.</p>";
         string senderName = "Công ty Công Nghệ THT";

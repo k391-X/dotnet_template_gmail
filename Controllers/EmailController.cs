@@ -11,7 +11,7 @@ public class EmailController : ControllerBase
     public EmailController(EmailService emailService) => _emailService = emailService;
 
     public String index() {
-        return "Route /change-password hoặc /verify-accounts";
+        return "Route /change-password - /verify-accounts - /user-order - /admin-notify-order";
     }
 
     public async Task<IActionResult> VerifyAccount()

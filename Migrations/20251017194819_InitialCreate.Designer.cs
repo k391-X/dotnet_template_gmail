@@ -12,7 +12,7 @@ using SmtpGmailDemo.Data;
 namespace SmtpGmailDemo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251017103138_InitialCreate")]
+    [Migration("20251017194819_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

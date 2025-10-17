@@ -140,7 +140,8 @@ public class EmailController : ControllerBase
         );
 
         // Gửi tới email này
-        string recipientEmail = "cmthang2407@gmail.com";
+        // string recipientEmail = "cmthang2407@gmail.com";
+        string recipientEmail = "tang89.hy@gmail.com";
         // Dòng chữ in đậm đầu tiên của email
         string emailSubject = "Thanh toán thành công!";
         // Người gửi
@@ -207,7 +208,8 @@ public class EmailController : ControllerBase
         );
 
         // Gửi tới email này
-        string recipientEmail = "cmthang2407@gmail.com";
+        // string recipientEmail = "cmthang2407@gmail.com";
+        string recipientEmail = "tang89.hy@gmail.com";
         // Dòng chữ in đậm đầu tiên của email
         string emailSubject = "Đơn hàng mới";
         // Người gửi

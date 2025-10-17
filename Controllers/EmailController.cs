@@ -140,8 +140,8 @@ public class EmailController : ControllerBase
         );
 
         // Gửi tới email này
-        // string recipientEmail = "cmthang2407@gmail.com";
-        string recipientEmail = "tang89.hy@gmail.com";
+        string recipientEmail = "cmthang2407@gmail.com";
+        // string recipientEmail = "tang89.hy@gmail.com";
         // Dòng chữ in đậm đầu tiên của email
         string emailSubject = "Thanh toán thành công!";
         // Người gửi
@@ -198,7 +198,14 @@ public class EmailController : ControllerBase
             {"InvoiceDate", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")},
             {"GrandTotal", "16,000,000"},
             {"BillCode", "9kdjte82"},
-            {"ItemRows", itemRowsHtml} // Đây là key dùng trong template
+            {"ItemRows", itemRowsHtml}, // Đây là key dùng trong template
+            {"PaymentMethod", "Chuyển khoản"},
+            {"ShippingMethod", "Sách Ebook"},
+            {"CustomerNote", "Không có ghi chú riêng"},
+            {"OrderStatus", "Đã hoàn thành"},
+            {"OrderTime", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")},
+            {"HandledBy", "Admin"},
+            {"AdminNote", "Hoàn tất xử lý"}
         };
 
         // Build email HTML
@@ -208,8 +215,8 @@ public class EmailController : ControllerBase
         );
 
         // Gửi tới email này
-        // string recipientEmail = "cmthang2407@gmail.com";
-        string recipientEmail = "tang89.hy@gmail.com";
+        string recipientEmail = "cmthang2407@gmail.com";
+        // string recipientEmail = "tang89.hy@gmail.com";
         // Dòng chữ in đậm đầu tiên của email
         string emailSubject = "Đơn hàng mới";
         // Người gửi

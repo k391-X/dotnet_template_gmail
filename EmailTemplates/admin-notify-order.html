@@ -4,34 +4,77 @@
         .invoice-container {
             font-family: Arial, sans-serif;
             background-color: #ffffff;
-            max-width: 600px;
+            max-width: 750px;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
 
-        .invoice-container h2 {
-            color: #0455A4;
+        .invoice-container .invoice-header {
+            background: #0455A4;
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
         }
 
-        .invoice-container p {
-            font-size: 16px;
-            line-height: 1.6;
+        .invoice-container .invoice-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .invoice-container .section-title {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #0455A4;
+            border-left: 4px solid #0455A4;
+            padding-left: 10px;
         }
 
         .invoice-container table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            font-size: 15px;
+            margin-top: 15px;
         }
 
-        .invoice-container th, .invoice-container td {
+        .invoice-container th,
+        .invoice-container td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 10px 14px;
             text-align: left;
         }
 
         .invoice-container th {
+            background-color: #f6f8fa;
+        }
+
+        .invoice-container .info-table th {
+            width: 35%;
+        }
+
+        .invoice-container .status {
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .invoice-container .status.pending {
+            background-color: #ffe6b3;
+            color: #a67c00;
+        }
+
+        .invoice-container .status.processing {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .invoice-container .status.done {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .invoice-container .items-table th {
             background-color: #0455A4;
             color: white;
         }
@@ -39,26 +82,93 @@
         .invoice-container .total {
             font-weight: bold;
             text-align: right;
+            background-color: #f3f6fa;
+        }
+
+        .invoice-container .total-amount {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0455A4;
+        }
+
+        .invoice-container .admin-notes {
+            background: #fafafa;
+            border: 1px dashed #ccc;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin-top: 20px;
+            font-size: 14px;
         }
 
         .invoice-container .footer {
             color: gray;
-            font-size: 14px;
-            margin-top: 20px;
+            font-size: 13px;
+            margin-top: 25px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="invoice-container">
-        <h2 style="background: #0455A4; color: #ffffff; border-radius: 4px; padding: 20px;">Thông báo đơn hàng mới</h2>
-
-        <div style="display: flex;">
-            <p style="width: 50%;">Khách hàng: <strong>{{CustomerName}}</strong></p>
-            <p style="width: 50%">Email: <strong>{{CustomerEmail}}</strong></p>
+        <div class="invoice-header">
+            <h2>Thông báo đơn hàng mới</h2>
         </div>
-        <p>Mã hóa đơn: <a href="{{LinkHistoryBill}}/role=admin&code={{BillCode}}">{{BillCode}}</a></p>
 
-        <table>
+        <h3 class="section-title">Thông tin khách hàng</h3>
+        <table class="info-table">
+            <tr>
+                <th>Khách hàng</th>
+                <td><strong>{{CustomerName}}</strong></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><strong>{{CustomerEmail}}</strong></td>
+            </tr>
+            <tr>
+                <th>Mã hóa đơn</th>
+                <td>
+                    <a href="{{LinkHistoryBill}}/role=admin&code={{BillCode}}" 
+                       style="color:#0455A4; text-decoration:none; font-weight:bold;">
+                        {{BillCode}}
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>Ngày đặt hàng</th>
+                <td><strong>{{InvoiceDate}}</strong></td>
+            </tr>
+            <tr>
+                <th>Phương thức thanh toán</th>
+                <td>{{PaymentMethod}}</td>
+            </tr>
+            <tr>
+                <th>Phương thức giao hàng</th>
+                <td>{{ShippingMethod}}</td>
+            </tr>
+            <tr>
+                <th>Ghi chú từ khách hàng</th>
+                <td>{{CustomerNote}}</td>
+            </tr>
+        </table>
+
+        <h3 class="section-title">Thông tin quản trị</h3>
+        <table class="info-table">
+            <tr>
+                <th>Trạng thái đơn hàng</th>
+                <td><span class="status {{OrderStatusClass}}">{{OrderStatus}}</span></td>
+            </tr>
+            <tr>
+                <th>Thời gian đặt</th>
+                <td>{{OrderTime}}</td>
+            </tr>
+            <tr>
+                <th>Người xử lý</th>
+                <td>{{HandledBy}}</td>
+            </tr>
+        </table>
+
+        <h3 class="section-title">Chi tiết sản phẩm</h3>
+        <table class="items-table">
             <thead>
                 <tr>
                     <th>STT</th>
@@ -73,12 +183,18 @@
                 {{ItemRows}}
                 <tr>
                     <td colspan="4" class="total">Tổng cộng:</td>
-                    <td colspan="2" style="font-size:16px; font-weight:bold;">{{GrandTotal}}<span>đ</span></td>
+                    <td colspan="2" class="total-amount">{{GrandTotal}}đ</td>
                 </tr>
             </tbody>
         </table>
 
-        <p>Ngày đặt hàng: <span style="font-weight:bold;">{{InvoiceDate}}</span></p>
+        <div class="admin-notes">
+            <strong>Ghi chú quản trị:</strong> {{AdminNote}}
+        </div>
+
+        <p class="footer">
+            Hệ thống quản lý đơn hàng | Admin Dashboard © 2025
+        </p>
     </div>
 </body>
 </html>

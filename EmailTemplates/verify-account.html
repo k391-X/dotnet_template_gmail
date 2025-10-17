@@ -1,6 +1,10 @@
 ﻿<html>
 <head>
     <style>
+        .verify-account-container {
+            padding: 30px
+        }
+
         h2 {
             color: #0455A4;
         }
@@ -44,12 +48,13 @@
     </style>
 </head>
 <body>
-    <p>Xin chào <span style="color:#0455A4; font-size:24px; font-weight:bold;">{{Name}}</span>,</p>
-    <p>Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn trên hệ thống <strong>{{NameCompany}}</strong>.</p>
-    <p>Chỉ còn 1 bước cuối cùng. Bạn vui lòng bấm vào link dưới đây để hoàn tất đăng ký:</p>
-    <a class="button" style="font-size: 16px;" href="https://example.com/verify?email={{Email}}&token={{Token}}">Xác thực tài khoản</a>
-    <p>Nếu bạn không thực hiện yêu cầu, hãy bỏ qua email này. Liên kết trên sẽ hết hạn trong vòng <strong>{{LifeTime}}</strong>.</p>
-    <p>Trân trọng.</p>
-
+    <div class="verify-account-container">
+        <p>Xin chào <span style="color:#0455A4; font-size:24px; font-weight:bold;">{{Name}}</span>,</p>
+        <p>Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn trên hệ thống <strong>{{NameCompany}}</strong>.</p>
+        <p>Chỉ còn 1 bước cuối cùng. Bạn vui lòng bấm vào link dưới đây để hoàn tất đăng ký:</p>
+        <a class="button" style="font-size: 16px;" href="https://example.com/verify?email={{Email}}&token={{Token}}">Xác thực tài khoản</a>
+        <p>Nếu bạn không thực hiện yêu cầu, hãy bỏ qua email này. Liên kết trên sẽ hết hạn trong vòng <strong>{{LifeTime}}</strong>.</p>
+        <p>Trân trọng.</p>
+    </div>
 </body>
 </html>

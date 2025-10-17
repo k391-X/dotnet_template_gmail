@@ -60,9 +60,9 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
-    name: "AdminOrderProcessing",
-    pattern: "/admin-order-processing",
-    defaults: new {controller="Email", action="AdminOrderProcessing"}
+    name: "AdminNotifyOrder",
+    pattern: "/admin-notify-order",
+    defaults: new {controller="Email", action="AdminNotifyOrder"}
 );
 
 if (app.Environment.IsDevelopment())

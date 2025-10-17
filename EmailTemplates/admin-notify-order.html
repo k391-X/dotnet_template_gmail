@@ -1,7 +1,15 @@
 <html>
 <head>
     <style>
-        /* Scoped CSS chỉ áp dụng cho .invoice-container */
+        .invoice-container {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
         .invoice-container h2 {
             color: #0455A4;
         }
@@ -33,17 +41,6 @@
             text-align: right;
         }
 
-        .invoice-container {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            /* margin: 20px auto; */
-            /* margin: 20px 0; */
-        }
-
         .invoice-container .footer {
             color: gray;
             font-size: 14px;
@@ -53,11 +50,13 @@
 </head>
 <body>
     <div class="invoice-container">
+        <h2 style="background: #0455A4; color: #ffffff; border-radius: 4px; padding: 20px;">Thông báo đơn hàng mới</h2>
 
-        <p>Xin chào <span style="color:#0455A4; font-size:20px; font-weight:bold;">{{CustomerName}}</span>,</p>
-        <p>Cảm ơn bạn đã mua hàng tại <strong>{{CompanyName}}</strong>.</p>
-        <p>Dưới đây là chi tiết hóa đơn của bạn:</p></p>
-        <p>Mã hóa đơn: <a class="button" href="{{LinkHistoryBill}}/code={{BillCode}}">{{BillCode}}</a>  
+        <div style="display: flex;">
+            <p style="width: 50%;">Khách hàng: <strong>{{CustomerName}}</strong></p>
+            <p style="width: 50%">Email: <strong>{{CustomerEmail}}</strong></p>
+        </div>
+        <p>Mã hóa đơn: <a href="{{LinkHistoryBill}}/role=admin&code={{BillCode}}">{{BillCode}}</a></p>
 
         <table>
             <thead>
@@ -74,17 +73,12 @@
                 {{ItemRows}}
                 <tr>
                     <td colspan="4" class="total">Tổng cộng:</td>
-                    <td colspan="2" style="font-size:18px; font-weight:bold;">{{GrandTotal}}<span>đ</span></td>
+                    <td colspan="2" style="font-size:16px; font-weight:bold;">{{GrandTotal}}<span>đ</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <p>Hóa đơn này được lập vào: <span style="font-weight: bold;">{{InvoiceDate}}</span>.</p>
-        <p>Trân trọng.</p>
-
-        <div class="footer">
-            Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ: <span>{{GmailSupport}}</span>
-        </div>
+        <p>Ngày đặt hàng: <span style="font-weight:bold;">{{InvoiceDate}}</span></p>
     </div>
 </body>
 </html>

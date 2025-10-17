@@ -25,7 +25,7 @@ builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings")
 );
 
-builder.Services.AddTransient<EmailService>();
+builder.Services.AddScoped<EmailService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,15 +36,33 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.MapControllerRoute(
+    name: "Home",
+    pattern: "/",
+    defaults: new {controller="Email", action="index"}
+);
+
+app.MapControllerRoute(
     name: "ChangePassword",
     pattern: "/change-password",
     defaults: new {controller="Email", action="ChangePassword"}
 );
 
 app.MapControllerRoute(
-    name: "VerifyAccouts",
-    pattern: "/verify-accouts",
+    name: "VerifyAccout",
+    pattern: "/verify-accout",
     defaults: new {controller="Email", action="VerifyAccount"}
+);
+
+app.MapControllerRoute(
+    name: "UserOrder",
+    pattern: "/user-order",
+    defaults: new {controller="Email", action="UserOrder"}
+);
+
+app.MapControllerRoute(
+    name: "AdminOrderProcessing",
+    pattern: "/admin-order-processing",
+    defaults: new {controller="Email", action="AdminOrderProcessing"}
 );
 
 if (app.Environment.IsDevelopment())

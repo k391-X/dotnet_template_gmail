@@ -7,6 +7,17 @@
 
         p {
             font-size: 16px;
+            line-height: 1.6;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0455A4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
         }
 
         a.button {
@@ -23,14 +34,21 @@
             font-size: 12px;
             margin-top: 20px;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fc;
+            margin: 0;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
     <p>Xin chào <span style="color:#0455A4; font-size:24px; font-weight:bold;">{{Name}}</span>,</p>
-    <p>Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn trên hệ thống <strong>Tạp chí điện tử Công ty Công nghệ THT</strong>.</p>
-    <p>Chỉ còn 1 bước cuối cùng. Bạn vui lòng bấm vào link dưới đây để hoàn tất đăng ký.</p>
-    <a class="button" href="https://example.com/verify?token={{Token}}">Xác thực tài khoản</a>
-    <p>Nếu bạn không thực hiện yêu cầu, hãy bỏ qua email này. Liên kết trên sẽ hết hạn trong vòng <strong>24 giờ</strong>.</p>
+    <p>Chúng tôi nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn trên hệ thống <strong>{{NameCompany}}</strong>.</p>
+    <p>Chỉ còn 1 bước cuối cùng. Bạn vui lòng bấm vào link dưới đây để hoàn tất đăng ký:</p>
+    <a class="button" style="font-size: 16px;" href="https://example.com/verify?email={{Email}}&token={{Token}}">Xác thực tài khoản</a>
+    <p>Nếu bạn không thực hiện yêu cầu, hãy bỏ qua email này. Liên kết trên sẽ hết hạn trong vòng <strong>{{LifeTime}}</strong>.</p>
     <p>Trân trọng.</p>
 
 </body>

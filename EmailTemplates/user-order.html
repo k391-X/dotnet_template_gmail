@@ -1,0 +1,90 @@
+<html>
+<head>
+    <style>
+        /* Scoped CSS chỉ áp dụng cho .invoice-container */
+        .invoice-container h2 {
+            color: #0455A4;
+        }
+
+        .invoice-container p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .invoice-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .invoice-container th, .invoice-container td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .invoice-container th {
+            background-color: #0455A4;
+            color: white;
+        }
+
+        .invoice-container .total {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .invoice-container {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            /* margin: 20px auto; */
+            /* margin: 20px 0; */
+        }
+
+        .invoice-container .footer {
+            color: gray;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+
+        <p>Xin chào <span style="color:#0455A4; font-size:20px; font-weight:bold;">{{CustomerName}}</span>,</p>
+        <p>Cảm ơn bạn đã mua hàng tại <strong>{{CompanyName}}</strong>.</p>
+        <p>Dưới đây là chi tiết hóa đơn của bạn:</p></p>
+        <p>Mã hóa đơn: <a class="button" href="{{LinkHistoryBill}}/code={{BillCode}}">{{BillCode}}</a>  
+
+        <table>
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên hàng hóa</th>
+                    <th>ĐVT</th>
+                    <th>SL</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ItemRows}}
+                <tr>
+                    <td colspan="4" class="total">Tổng cộng:</td>
+                    <td colspan="2" style="font-size:18px; font-weight:bold;">{{GrandTotal}}<span>đ</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Hóa đơn này được lập vào: <span style="font-size: 14px; font-weight: bold;">{{InvoiceDate}}</span>.</p>
+        <p>Trân trọng.</p>
+
+        <div class="footer">
+            Nếu bạn có bất kỳ thắc mắc nào về hóa đơn, vui lòng liên hệ: <span>{{GmailSupport}}</span>
+        </div>
+    </div>
+</body>
+</html>

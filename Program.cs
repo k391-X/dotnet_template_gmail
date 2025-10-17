@@ -3,22 +3,9 @@ using SmtpGmailDemo.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+using SmtpGmailDemo.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// 🟢 Cấu hình database (SQL Server)
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// 🟢 Cấu hình Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
-{
-    options.Password.RequireDigit = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 6;
-})
-.AddEntityFrameworkStores<ApplicationDbContext>()
-.AddDefaultTokenProviders();
 
 // 🟢 Cấu hình email
 builder.Services.Configure<EmailSettings>(
@@ -30,8 +17,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Xử lý phần Token
-// builder.Services.AddScoped<TokenUtils>();
+// Cấu hình Jwt ở file riêng
+builder.Services.AddAppIdentity(builder.Configuration);
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -72,9 +60,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
-app.UseAuthentication(); // thêm dòng này
-app.UseAuthorization();  // và dòng này
-
+app.UseAuthentication();
+app.UseAuthorization();  
 app.MapControllers();
 
 app.Run();

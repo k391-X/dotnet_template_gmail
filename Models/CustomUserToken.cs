@@ -6,15 +6,15 @@ namespace SmtpGmailDemo.Models
     public class CustomUserToken
     {
         [Key]
-        public int Id {get;set;}
+        public int? Id {get;set;}
 
         [Required]
-        public string UserId {get;set;} = string.Empty;
+        public string? UserId {get;set;}
 
         public string? OriginalToken {get;set;}
 
         [Required]
-        public string EncryptedToken {get;set;} = string.Empty;
+        public string? EncryptedToken {get;set;}
 
         public DateTime CreatedAt {get;set;} = DateTime.UtcNow;
 

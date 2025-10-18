@@ -28,7 +28,7 @@ namespace SmtpGmailDemo.Controllers
 
         // Đăng ký tài khoản mới
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] Register model)
         {
             // Tạo user mới
             var user = new ApplicationUser
@@ -77,7 +77,7 @@ namespace SmtpGmailDemo.Controllers
 
         // Đăng nhập và sinh JWT token
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] Login model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
@@ -85,6 +85,43 @@ namespace SmtpGmailDemo.Controllers
 
             var token = GenerateJwtToken(user);
             return Ok(new { token });
+        }
+
+        // 1️⃣ Quên mật khẩu - Gửi token đặt lại mật khẩu qua email
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPassword model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+                return BadRequest(new { message = "User not found" });
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = System.Net.WebUtility.UrlEncode(token);
+
+            // ⚠️ Thay phần này bằng EmailService thực tế (hiện chỉ log ra console để test)
+            var resetLink = $"https://localhost:7042/api/auth/reset-password?email={model.Email}&token={encodedToken}";
+            Console.WriteLine($"Reset Password Link: {resetLink}");
+
+            return Ok(new { message = "Password reset link generated successfully", link = resetLink });
+        }
+
+        // 2️⃣ Đặt lại mật khẩu
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPassword model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+                return BadRequest(new { message = "User not found" });
+
+            // Giải mã token URL
+            var decodedToken = System.Net.WebUtility.UrlDecode(model.Token);
+
+            var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.NewPassword);
+
+            if (!result.Succeeded)
+                return BadRequest(new { message = "Invalid token or password", errors = result.Errors });
+
+            return Ok(new { message = "Password has been reset successfully!" });
         }
 
         private string GenerateJwtToken(ApplicationUser user)
@@ -108,19 +145,6 @@ namespace SmtpGmailDemo.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        // Mô hình dữ liệu cho Register / Login
-        public class RegisterModel
-        {
-            public string Email { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
-        }
-
-        public class LoginModel
-        {
-            public string Email { get; set; } = string.Empty;
-            public string Password { get; set; } = string.Empty;
         }
     }
 }

@@ -5,17 +5,23 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+using SmtpGmailDemo.Models;
+using SmtpGmailDemo.Helpers;
+using SmtpGmailDemo.Data;
+
 namespace SmtpGmailDemo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly ApplicationDbContext _context;
 
-        public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration)
+        public AuthController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
+            _context = context;
             _userManager = userManager;
             _configuration = configuration;
         }
@@ -24,7 +30,8 @@ namespace SmtpGmailDemo.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var user = new IdentityUser
+            // Tạo user mới
+            var user = new ApplicationUser
             {
                 UserName = model.Email,
                 Email = model.Email
@@ -32,10 +39,40 @@ namespace SmtpGmailDemo.Controllers
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
-            if (result.Succeeded)
-                return Ok(new { message = "User registered successfully!" });
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
 
-            return BadRequest(result.Errors);
+            // Xóa các token cũ (nếu có - Chỉ có 1 token duy nhất để xác thực)
+            var oldTokens = _context.CustomUserTokens.Where(t => t.UserId == user.Id);
+            _context.CustomUserTokens.RemoveRange(oldTokens);
+            await _context.SaveChangesAsync();
+
+            // Bổ sung phần gửi trả lại token 
+            // 2️⃣ Tạo JWT token gốc
+            var token = GenerateJwtToken(user);
+
+            // 3️⃣ Mã hóa token bằng AES
+            var encryptedToken = TokenEncryptor.Encrypt(token);
+
+            // 4️⃣ Lưu token gốc + mã hóa vào DB
+            _context.CustomUserTokens.Add(new CustomUserToken
+            {
+                UserId = user.Id,
+                OriginalToken = token,
+                EncryptedToken = encryptedToken,
+                CreatedAt = DateTime.UtcNow,
+                IsUsed = false,
+                ExpiresAt = DateTime.UtcNow.AddMinutes(30)
+            });
+            await _context.SaveChangesAsync();
+
+            // 5️⃣ Trả token mã hóa về client
+            return Ok(new
+            {
+                message = "User registered successfully!",
+                token = encryptedToken
+            });
+
         }
 
         // Đăng nhập và sinh JWT token
@@ -50,7 +87,7 @@ namespace SmtpGmailDemo.Controllers
             return Ok(new { token });
         }
 
-        private string GenerateJwtToken(IdentityUser user)
+        private string GenerateJwtToken(ApplicationUser user)
         {
             var claims = new[]
             {

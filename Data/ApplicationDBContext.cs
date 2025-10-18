@@ -12,5 +12,6 @@ namespace SmtpGmailDemo.Data
         }
 
         // Thêm DBSet<> khác nếu cần
+        public DbSet<CustomUserToken> CustomUserTokens {get;set;}
     }
 }

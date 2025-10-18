@@ -1,0 +1,5 @@
+Controllers/
+│
+├── AuthController.cs         // Đăng ký, đăng nhập, sinh JWT
+├── EmailController.cs        // Gửi email xác nhận, quên mật khẩu, v.v.
+└── VerifyController.cs       // Xử lý xác nhận từ link: /api/verify?email=...&token=...

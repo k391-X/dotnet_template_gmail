@@ -5,6 +5,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+using Microsoft.AspNetCore.RateLimiting;
+
 using SmtpGmailDemo.Models;
 using SmtpGmailDemo.Helpers;
 using SmtpGmailDemo.Data;
@@ -27,6 +29,7 @@ namespace SmtpGmailDemo.Controllers
         }
 
         // Đăng ký tài khoản mới
+        [EnableRateLimiting("registerLimiter")] // Gắn policy đã tạo
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] Register model)
         {
@@ -83,12 +86,17 @@ namespace SmtpGmailDemo.Controllers
             if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
                 return Unauthorized(new { message = "Invalid email or password." });
 
+            // 🔒 Kiểm tra xem email đã được xác thực chưa
+            if (!user.EmailConfirmed)
+                return Unauthorized(new { message = "Email has not been confirmed. Please verify your email before logging in." });
+
             var token = GenerateJwtToken(user);
             return Ok(new { token });
         }
 
         // 1️⃣ Quên mật khẩu - Gửi token đặt lại mật khẩu qua email
         [HttpPost("forgot-password")]
+        [EnableRateLimiting("forgotPasswordLimiter")] // Gắn policy đã tạo
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPassword model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
@@ -107,6 +115,7 @@ namespace SmtpGmailDemo.Controllers
 
         // 2️⃣ Đặt lại mật khẩu
         [HttpPost("reset-password")]
+        [EnableRateLimiting("resetPasswordLimiter")] // Gắn policy đã tạo
         public async Task<IActionResult> ResetPassword([FromBody] ResetPassword model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);

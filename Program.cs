@@ -2,10 +2,13 @@ using SmtpGmailDemo.Services;
 using SmtpGmailDemo.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
 using SmtpGmailDemo.Extensions;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Gọi extension RateLimiter
+builder.Services.AddAppRateLimiting();
 
 // 🟢 Cấu hình email
 builder.Services.Configure<EmailSettings>(
@@ -22,6 +25,11 @@ builder.Services.AddAppIdentity(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
+app.UseRouting();
+
+// Kích hoạt RateLimiter middleware
+app.UseRateLimiter();
+
 
 app.MapControllerRoute(
     name: "Home",
@@ -59,7 +67,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();  
 app.MapControllers();

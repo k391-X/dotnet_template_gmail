@@ -51,9 +51,8 @@ namespace SmtpGmailDemo.Services.Implementations
 
             // ✅ Sinh token xác thực, mã hóa, lưu db
             var encryptedToken = await GenerateAndStoreTokenAsync(user);
-            
             // ✅ Tạo link xác thực
-            var confirmUrl = $"{_configuration["AppSettings:FrontendUrl"]}/verify?email={user.Email}&token={encryptedToken}";
+            var confirmUrl = $"http://localhost:7042/verify?token={encryptedToken}";
 
             // ✅ Gửi email xác thực qua EmailTemplateService
             var placeholders = new Dictionary<string, string>

@@ -63,11 +63,40 @@ namespace SmtpGmailDemo.Controllers
             return View("~/Views/AuthView/RegisterConfirmation.cshtml");
         }  
 
-        // View thông báo gửi email
-        [HttpGet]
-        public IActionResult RegisterConfirmation()
+        // View kích hoạt gmail 
+        [HttpGet("/verify")]
+        public IActionResult Verify([FromQuery] string token)
         {
-            return View();
+            if (string.IsNullOrEmpty(token))
+            {
+                ViewBag.Message = "Token không hợp lệ hoặc đã hết hạn.";
+                ViewBag.Status = "error";
+                return View("Verify");
+            }
+
+            ViewBag.Token = token;
+            ViewBag.Status = "idle";
+            return View("Verify");
+        }
+
+        // Khi người dùng nhấn nút "Xác nhận sử dụng"
+        [HttpPost("/verify")]
+        public async Task<IActionResult> VerifyConfirm([FromForm] string token)
+        {
+            if (string.IsNullOrEmpty(token))
+            {
+                ViewBag.Message = "Thiếu mã xác thực.";
+                ViewBag.Status = "error";
+                return View("Verify");
+            }
+
+            Logger.Log("a", token);
+
+            // Cập nhật xác nhận email
+            // var user = await _authService.ConfirmEmailAsync(userId);
+            ViewBag.Message = "✅ Tài khoản của bạn đã được xác thực thành công!";
+            ViewBag.Status = "success";
+            return View("Verify");
         }
 
         // Trang quên mật khẩu

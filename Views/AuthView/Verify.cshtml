@@ -1,0 +1,172 @@
+@{
+    ViewData["Title"] = "Xác thực tài khoản";
+    var token = Context.Request.Query["token"];
+    bool hasToken = !string.IsNullOrEmpty(token);
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #333;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .verify-container {
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 420px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .verify-container img {
+            width: 180px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0455a4;
+        }
+
+        p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        button {
+            background-color: #0455a4;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            background-color: #034182;
+        }
+
+        .status-message {
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .success {
+            color: #16a34a;
+        }
+
+        .error {
+            color: #dc2626;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 13px;
+            color: #aaa;
+            background-color: transparent;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="verify-container">
+            <img src="https://congnghetht.com.vn/wp-content/uploads/2022/12/Logo-1-1024x625.jpg" alt="Logo THT" />
+            <h1>Xác thực tài khoản</h1>
+
+            @if (hasToken)
+            {
+                <p>Nhấn nút bên dưới để xác nhận tài khoản của bạn.</p>
+
+                <form id="verifyForm" method="post">
+                    <input type="hidden" name="token" value="@token" />
+                    <button type="button" id="verifyBtn">Xác nhận tài khoản</button>
+                </form>
+
+                <div id="status" class="status-message"></div>
+            }
+            else
+            {
+                <p class="error">❌ Liên kết xác thực không hợp lệ hoặc đã hết hạn.</p>
+            }
+        </div>
+    </main>
+
+    <footer>
+        © 2025 Công Nghệ THT. All rights reserved.
+    </footer>
+
+    @if (hasToken)
+    {
+        <script>
+            document.getElementById("verifyBtn").addEventListener("click", async () => {
+                const status = document.getElementById("status");
+                status.textContent = "Đang xác thực...";
+                status.className = "status-message";
+
+                const token = document.querySelector('input[name="token"]').value;
+
+                try {
+                    const response = await fetch(`/verify`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: `token=${encodeURIComponent(token)}`
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        status.textContent = data.message || "✅ Tài khoản đã được xác thực thành công!";
+                        status.classList.add("success");
+                    } else {
+                        status.textContent = data.message || "❌ Xác thực thất bại.";
+                        status.classList.add("error");
+                    }
+                } catch (err) {
+                    status.textContent = "Lỗi khi kết nối đến máy chủ.";
+                    status.classList.add("error");
+                }
+            });
+        </script>
+    }
+</body>
+</html>

@@ -20,6 +20,8 @@ builder.Services.Configure<EmailSettings>(
 );
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IEmailTemplateService, EmailTemplateService>();
+
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();

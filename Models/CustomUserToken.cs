@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SmtpGmailDemo.Enums;
 
 namespace SmtpGmailDemo.Models
 {
@@ -8,12 +9,10 @@ namespace SmtpGmailDemo.Models
         [Key]
         public int? Id {get;set;}
 
-        [Required]
         public string? UserId {get;set;}
 
         public string? OriginalToken {get;set;}
 
-        [Required]
         public string? EncryptedToken {get;set;}
 
         public DateTime CreatedAt {get;set;} = DateTime.UtcNow;
@@ -23,5 +22,7 @@ namespace SmtpGmailDemo.Models
 
         [ForeignKey("UserId")]
         public ApplicationUser? User {get;set;}
+
+        public TokenType TokenType { get; set; } = TokenType.VerifyEmail;    
     }
 }

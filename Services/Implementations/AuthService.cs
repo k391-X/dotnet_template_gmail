@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -7,6 +8,7 @@ using SmtpGmailDemo.Data;
 using SmtpGmailDemo.Helpers;
 using SmtpGmailDemo.Models;
 using SmtpGmailDemo.Services.Interfaces;
+using SmtpGmailDemo.Enums;
 
 using SmtpGmailDemo.Utils;
 
@@ -17,57 +19,86 @@ namespace SmtpGmailDemo.Services.Implementations
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IEmailTemplateService _emailTemplateService;
 
-        public AuthService(UserManager<ApplicationUser> userManager, ApplicationDbContext context, IConfiguration configuration)
+        public AuthService(UserManager<ApplicationUser> userManager, ApplicationDbContext context, IConfiguration configuration, IEmailTemplateService emailTemplateService)
         {
             _userManager = userManager;
             _context = context;
             _configuration = configuration;
+            _emailTemplateService = emailTemplateService;
         }
 
         public async Task<IdentityResult> RegisterUserAsync(Register model)
         {
-            // Log thông tin user (mask password)
-            Logger.Log("Register attempt", new
-            {
-                model.Email,
-                Password = "****",
-                model.ConfirmPassword
-            });
-
-            // 1️⃣ Kiểm tra user tồn tại
+            // Kiểm tra trùng email
             var existingUser = await _userManager.FindByEmailAsync(model.Email);
             if (existingUser != null)
             {
-                if (!existingUser.EmailConfirmed)
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = "EmailNotConfirmed",
-                        Description = "Email đã được đăng ký nhưng chưa xác nhận. Vui lòng kiểm tra hộp thư."
-                    });
-                }
-                else
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = "DuplicateEmail",
-                        Description = "Email đã tồn tại."
-                    });
-                }
+                return IdentityResult.Failed(new IdentityError { Description = "Email đã tồn tại" });
             }
 
-            // 2️⃣ Kiểm tra confirm password
-            if (model.Password != model.ConfirmPassword)
+            var user = new ApplicationUser
             {
-                return IdentityResult.Failed(new IdentityError
-                {
-                    Code = "PasswordMismatch",
-                    Description = "Mật khẩu xác nhận không trùng khớp."
-                });
-            }
+                UserName = model.Email,
+                Email = model.Email
+            };
 
-            // 3️⃣ Tạo user mới
+            // Tạo user mới
+            var resultUser = await _userManager.CreateAsync(user, model.Password);
+            if (!resultUser.Succeeded)
+                return resultUser;
+
+            // ✅ Sinh token xác thực, mã hóa, lưu db
+            var encryptedToken = await GenerateAndStoreTokenAsync(user);
+            
+            // ✅ Tạo link xác thực
+            var confirmUrl = $"{_configuration["AppSettings:FrontendUrl"]}/verify?email={user.Email}&token={encryptedToken}";
+
+            // ✅ Gửi email xác thực qua EmailTemplateService
+            var placeholders = new Dictionary<string, string>
+            {
+                {"Name", user.Email.Split('@')[0]},
+                {"Email", user.Email},
+                {"Token", encryptedToken},
+                {"LinkConfirm", confirmUrl},
+                {"LifeTime", "30 phút"},
+                {"NameCompany", "Tạp chí điện tử THT"}
+            };
+
+            await _emailTemplateService.SendEmailAsync(
+                EmailTemplateType.VerifyAccount,
+                user.Email,
+                placeholders
+            );
+
+            return resultUser;
+        }
+
+        // Kiểm tra đã tồn tại email
+        private async Task<IdentityResult?> CheckExistingUserAsync(string email)
+        {
+            var existingUser = await _userManager.FindByEmailAsync(email);
+            if (existingUser == null) return null;
+
+            var error = existingUser.EmailConfirmed
+                ? new IdentityError
+                {
+                    Code = "DuplicateEmail",
+                    Description = "Email đã tồn tại."
+                }
+                : new IdentityError
+                {
+                    Code = "EmailNotConfirmed",
+                    Description = "Email đã được đăng ký nhưng chưa xác nhận. Vui lòng kiểm tra hộp thư."
+                };
+
+            return IdentityResult.Failed(error);
+        }
+
+        // Tạo user mới
+        private async Task<IdentityResult> CreateNewUserAsync(Register model)
+        {
             var user = new ApplicationUser
             {
                 UserName = model.Email,
@@ -80,17 +111,27 @@ namespace SmtpGmailDemo.Services.Implementations
             {
                 foreach (var err in result.Errors)
                     Logger.Log($"Identity Error: {err.Description}");
-                return result;
             }
 
-            // 4️⃣ Xóa token cũ nếu có
-            var oldTokens = _context.CustomUserTokens.Where(t => t.UserId == user.Id);
+            return result;
+        }
+
+        // Xóa bỏ token cũ
+        private async Task RemoveOldTokensAsync(string userId)
+        {
+            var oldTokens = _context.CustomUserTokens
+                .Where(t => t.UserId == userId && t.TokenType == TokenType.VerifyEmail);
+
             _context.CustomUserTokens.RemoveRange(oldTokens);
             await _context.SaveChangesAsync();
+        }
 
-            // 5️⃣ Tạo token JWT và lưu
+        // Tạo token mới , mã hóa, lưu vào db
+        private async Task<string> GenerateAndStoreTokenAsync(ApplicationUser user)
+        {
             var token = GenerateJwtToken(user);
             var encryptedToken = TokenEncryptor.Encrypt(token);
+            var minuteLifeTimeToken = 30;
 
             _context.CustomUserTokens.Add(new CustomUserToken
             {
@@ -99,14 +140,91 @@ namespace SmtpGmailDemo.Services.Implementations
                 EncryptedToken = encryptedToken,
                 CreatedAt = DateTime.UtcNow,
                 IsUsed = false,
-                ExpiresAt = DateTime.UtcNow.AddMinutes(30)
+                ExpiresAt = DateTime.UtcNow.AddMinutes(minuteLifeTimeToken),
+                TokenType = TokenType.VerifyEmail
             });
 
             await _context.SaveChangesAsync();
+            return encryptedToken;
+        }
+
+        // Validate token
+        public async Task<IdentityResult> ValidateStoredTokenAsync(string userId, string token, TokenType expectedType)
+        {
+            var dbToken = await _context.CustomUserTokens
+                .FirstOrDefaultAsync(t =>
+                    t.UserId == userId &&
+                    t.TokenType == expectedType);
+
+            if (dbToken == null)
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = "TokenNotFound",
+                    Description = "Token không tồn tại hoặc đã bị thu hồi."
+                });
+            }
+
+            // 1️⃣ Token hết hạn => xóa luôn
+            if (dbToken.ExpiresAt < DateTime.UtcNow)
+            {
+                _context.CustomUserTokens.Remove(dbToken);
+                await _context.SaveChangesAsync();
+
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = "TokenExpired",
+                    Description = "Token đã hết hạn. Vui lòng yêu cầu token mới."
+                });
+            }
+
+            // 2️⃣ So sánh token gốc (chưa mã hóa)
+            if (dbToken.OriginalToken != token)
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = "TokenInvalid",
+                    Description = "Token không hợp lệ hoặc đã bị thay đổi."
+                });
+            }
 
             return IdentityResult.Success;
         }
 
+        // Xóa bỏ token sau khi sử dụng
+        public async Task RemoveTokenAsync(string userId, string token)
+        {
+            var dbToken = await _context.CustomUserTokens
+                .FirstOrDefaultAsync(t => t.UserId == userId && t.OriginalToken == token);
+
+            if (dbToken != null)
+            {
+                _context.CustomUserTokens.Remove(dbToken);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        // Gửi gmail hoàn tất xác nhận
+        private async Task SendVerificationEmailAsync(ApplicationUser user, string token)
+        {
+            var encodedToken = Uri.EscapeDataString(token);
+            var confirmUrl = $"{_configuration["AppSettings:FrontendUrl"]}/verify?email={user.Email}&token={encodedToken}";
+
+            var placeholders = new Dictionary<string, string>
+            {
+                {"Name", user.Email.Split('@')[0]},
+                {"Email", user.Email},
+                {"Token", token},
+                {"LinkConfirm", confirmUrl},
+                {"LifeTime", "24 giờ"}
+            };
+
+            await _emailTemplateService.SendEmailAsync(
+                EmailTemplateType.VerifyAccount,
+                user.Email,
+                placeholders
+            );
+        }
 
         public async Task<string?> LoginAsync(Login model)
         {

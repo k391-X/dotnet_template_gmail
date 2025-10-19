@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SmtpGmailDemo.Extensions;
 using System.Threading.RateLimiting;
-
 using SmtpGmailDemo.Services.Interfaces;
 using SmtpGmailDemo.Services.Implementations;
 
@@ -12,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Gọi extension RateLimiter
 builder.Services.AddAppRateLimiting();
+
+builder.Services.AddAppServices();
 
 // 🟢 Cấu hình email
 builder.Services.Configure<EmailSettings>(
@@ -34,6 +35,8 @@ app.UseRouting();
 // Kích hoạt RateLimiter middleware
 app.UseRateLimiter();
 
+// Sử dụng thư viện tĩnh trong wwwroot validation
+app.UseStaticFiles();
 
 app.MapControllerRoute(
     name: "Home",

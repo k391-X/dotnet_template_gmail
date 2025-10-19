@@ -1,1 +1,0 @@
-Đây là bộ quy tắc validation dùng ở cả backend và frontend sẽ dựa vào đây để kiểm tra

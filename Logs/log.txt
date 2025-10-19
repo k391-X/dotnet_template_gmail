@@ -1,0 +1,17 @@
+[2025-10-19 02:59:04] [AuthService.cs:43] 1
+[2025-10-19 02:59:10] [AuthService.cs:43] 1
+[2025-10-19 03:00:37] [AuthService.cs:43] 1
+[2025-10-19 03:00:42] [AuthService.cs:43] 1
+[2025-10-19 03:00:54] [AuthService.cs:43] 1 | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-19 03:01:00] [AuthService.cs:43] 1 | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-19 03:06:47] [AuthService.cs:43] 1 | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-19 03:17:14] [AuthService.cs:82] Identity Error: Passwords must have at least one lowercase ('a'-'z').

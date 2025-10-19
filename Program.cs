@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using SmtpGmailDemo.Extensions;
 using System.Threading.RateLimiting;
 
+using SmtpGmailDemo.Services.Interfaces;
+using SmtpGmailDemo.Services.Implementations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Gọi extension RateLimiter
@@ -15,8 +18,9 @@ builder.Services.Configure<EmailSettings>(
     builder.Configuration.GetSection("EmailSettings")
 );
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<EmailService>();
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -33,9 +37,15 @@ app.UseRateLimiter();
 
 app.MapControllerRoute(
     name: "Home",
-    pattern: "/",
-    defaults: new {controller="Email", action="index"}
+    pattern: "/login",
+    defaults: new {controller="AuthView", action="index"}
 );
+
+// app.MapControllerRoute(
+//     name: "Home",
+//     pattern: "/",
+//     defaults: new {controller="Email", action="index"}
+// );
 
 app.MapControllerRoute(
     name: "ChangePassword",

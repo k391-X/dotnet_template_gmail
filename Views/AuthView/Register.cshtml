@@ -1,0 +1,204 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng ký</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            background: #fff;
+            padding: 40px 35px;
+            border-radius: 12px;
+            width: 340px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0455A4;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #0455A4;
+            outline: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        button {
+            width: 100%;
+            background: #0455A4;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #03448a;
+        }
+
+        .footer-link {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .footer-link a {
+            color: #0455A4;
+            text-decoration: none;
+        }
+
+        .footer-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <form id="registerForm" class="register-container" asp-controller="AuthView" asp-action="Register" method="post" novalidate>
+        <h2>Đăng ký</h2>
+
+        <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="Email" placeholder="Nhập email" />
+            <span class="error" id="emailError"></span>
+        </div>
+
+        <div class="input-group">
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="Password" placeholder="Nhập mật khẩu" />
+            <span class="error" id="passwordError"></span>
+        </div>
+
+        <div class="input-group">
+            <label for="confirmPassword">Xác nhận mật khẩu</label>
+            <input type="password" id="confirmPassword" name="ConfirmPassword" placeholder="Nhập lại mật khẩu" />
+            <span class="error" id="confirmError"></span>
+        </div>
+
+        <button type="submit">Đăng ký</button>
+
+        <div class="footer-link">
+            <a href="/login">Đăng nhập</a>
+        </div>
+    </form>
+
+    <script>
+        const form = document.getElementById("registerForm");
+        const emailInput = form.Email;
+        const passwordInput = form.Password;
+        const confirmInput = form.ConfirmPassword;
+
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+        const confirmError = document.getElementById("confirmError");
+
+        // Hàm validate từng trường
+        function validateEmail() {
+            const email = emailInput.value.trim();
+            if (!email) {
+                emailError.textContent = "Email không được để trống";
+                return false;
+            } else {
+                const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+                if (!emailRegex.test(email)) {
+                    emailError.textContent = "Email không hợp lệ";
+                    return false;
+                }
+            }
+            emailError.textContent = "";
+            return true;
+        }
+
+        function validatePassword() {
+            const password = passwordInput.value.trim();
+            if (!password) {
+                passwordError.textContent = "Mật khẩu không được để trống";
+                return false;
+            }
+            passwordError.textContent = "";
+            return true;
+        }
+
+        function validateConfirm() {
+            const confirm = confirmInput.value.trim();
+            const password = passwordInput.value.trim();
+            if (!confirm) {
+                confirmError.textContent = "Xác nhận mật khẩu không được để trống";
+                return false;
+            } else if (confirm !== password) {
+                confirmError.textContent = "Mật khẩu xác nhận không trùng khớp";
+                return false;
+            }
+            confirmError.textContent = "";
+            return true;
+        }
+
+        // Validate liên tục khi nhập
+        emailInput.addEventListener("input", validateEmail);
+        passwordInput.addEventListener("input", () => {
+            validatePassword();
+            validateConfirm(); // cập nhật confirm nếu password thay đổi
+        });
+        confirmInput.addEventListener("input", validateConfirm);
+
+        // Validate khi submit
+        form.addEventListener("submit", function(event) {
+            const isEmailValid = validateEmail();
+            const isPasswordValid = validatePassword();
+            const isConfirmValid = validateConfirm();
+
+            if (!(isEmailValid && isPasswordValid && isConfirmValid)) {
+                event.preventDefault(); // chặn submit nếu không hợp lệ
+            }
+        });
+    </script>
+</body>
+</html>

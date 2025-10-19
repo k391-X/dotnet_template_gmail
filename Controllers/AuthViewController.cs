@@ -19,7 +19,7 @@ namespace SmtpGmailDemo.Controllers
         [HttpGet("/login")]
         public IActionResult Login()
         {
-            return View("~/Views/Auth/Login.cshtml");
+            return View("~/Views/AuthView/Login.cshtml");
         }
 
         // Trang đăng ký
@@ -60,7 +60,7 @@ namespace SmtpGmailDemo.Controllers
 
             // ✅ 4. Nếu thành công → chuyển hướng hoặc hiển thị thông báo thành công
             TempData["Success"] = "Đăng ký thành công! Vui lòng kiểm tra email xác nhận.";
-            return RedirectToAction("RegisterConfirmation");
+            return View("~/Views/AuthView/RegisterConfirmation.cshtml");
         }  
 
         // View thông báo gửi email

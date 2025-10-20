@@ -40,6 +40,8 @@ namespace SmtpGmailDemo.Services
 
         private static string GetTemplateFileName(EmailTemplateType type)
         {
+            Logger.Log("GetTemplateFileName - Enum Value", type);
+            Logger.Log("GetTemplateFileName - Int Value", (int)type);
             return type switch
             {
                 EmailTemplateType.VerifyAccount => "verify-account",
@@ -52,6 +54,8 @@ namespace SmtpGmailDemo.Services
 
         private static string GetSubject(EmailTemplateType type)
         {
+            Logger.Log("GetSubject - Enum Value", type);
+            Logger.Log("GetSubject - Int Value", (int)type);
             return type switch
             {
                 EmailTemplateType.VerifyAccount => "Xác nhận đăng ký tài khoản",

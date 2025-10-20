@@ -80,7 +80,7 @@ namespace SmtpGmailDemo.Services.Implementations
             var confirmUrl = $"http://localhost:7042/verify?token={encodedToken}";
 
             // 3️⃣ Gửi email xác thực
-            await SendVerificationEmailAsync(user, confirmUrl);
+            await SendForgotPasswordAsync(user, confirmUrl);
 
             // 4️⃣ Trả kết quả
             if (isNewUser)
@@ -106,6 +106,25 @@ namespace SmtpGmailDemo.Services.Implementations
 
             await _emailTemplateService.SendEmailAsync(
                 EmailTemplateType.VerifyAccount,
+                user.Email,
+                placeholders
+            );
+        }
+
+        // Phương thức gửi email forgot password
+        private async Task SendForgotPasswordAsync(ApplicationUser user, string confirmUrl)
+        {
+            var placeholders = new Dictionary<string, string>
+            {
+                {"Name", user.Email.Split('@')[0]},
+                {"Email", user.Email},
+                {"LinkConfirm", confirmUrl},
+                {"LifeTime", "30 phút"},
+                {"NameCompany", "Tạp chí điện tử THT"}
+            };
+
+            await _emailTemplateService.SendEmailAsync(
+                EmailTemplateType.ChangePassword,
                 user.Email,
                 placeholders
             );
@@ -162,8 +181,8 @@ namespace SmtpGmailDemo.Services.Implementations
             await _context.SaveChangesAsync();
         }
 
-        // Tạo token mới , mã hóa, lưu vào db
-        private async Task<string> GenerateAndStoreTokenAsync(ApplicationUser user)
+        // Tạo token mới , mã hóa, lưu vào db -- Đối với Verify Accounts
+         private async Task<string> GenerateAndStoreTokenAsync(ApplicationUser user)
         {
             var token = GenerateJwtToken(user);
             var encryptedToken = TokenEncryptor.Encrypt(token);
@@ -178,6 +197,28 @@ namespace SmtpGmailDemo.Services.Implementations
                 IsUsed = false,
                 ExpiresAt = DateTime.UtcNow.AddMinutes(minuteLifeTimeToken),
                 TokenType = TokenType.VerifyEmail
+            });
+
+            await _context.SaveChangesAsync();
+            return encryptedToken;
+        }
+
+        // Tạo token mới , mã hóa, lưu vào db -- Đối với ForgotPassword
+         private async Task<string> GenerateAndStoreTokenForgotPasswordAsync(ApplicationUser user)
+        {
+            var token = GenerateJwtToken(user);
+            var encryptedToken = TokenEncryptor.Encrypt(token);
+            var minuteLifeTimeToken = 30;
+
+            _context.CustomUserTokens.Add(new CustomUserToken
+            {
+                UserId = user.Id,
+                OriginalToken = token,
+                EncryptedToken = encryptedToken,
+                CreatedAt = DateTime.UtcNow,
+                IsUsed = false,
+                ExpiresAt = DateTime.UtcNow.AddMinutes(minuteLifeTimeToken),
+                TokenType = TokenType.ResetPassword
             });
 
             await _context.SaveChangesAsync();
@@ -308,15 +349,24 @@ namespace SmtpGmailDemo.Services.Implementations
 
         public async Task<string?> ForgotPasswordAsync(ForgotPasswordViewModel model)
         {
+            Logger.Log("ForgotPasswordAsync 1", model);
             var user = await _userManager.FindByEmailAsync(model.Email);
+            Logger.Log("ForgotPasswordAsync 2", user);
+
             if (user == null) return null;
 
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var encodedToken = System.Net.WebUtility.UrlEncode(token);
+            // 2️⃣ Sinh token thay đổi mật khẩu mới
+            var encryptedToken = await GenerateAndStoreTokenForgotPasswordAsync(user);
+            Logger.Log("ForgotPasswordAsync 3", encryptedToken);
 
-            var resetLink = $"https://localhost:7042/reset-password?email={model.Email}&token={encodedToken}";
-            Console.WriteLine($"Reset Password Link: {resetLink}");
-            return resetLink;
+            var confirmUrl = $"http://localhost:7042/reset-password?email={model.Email}&token={encryptedToken}";
+
+            // 3️⃣ Gửi email xác thực
+            await SendVerificationEmailAsync(user, confirmUrl);
+            Logger.Log("ForgotPasswordAsync 4");
+
+            // Nếu thành công → trả về link reset (hoặc có thể trả về thông báo success)
+            return confirmUrl;
         }
 
         public async Task<IdentityResult> ResetPasswordAsync(ResetPassword model)

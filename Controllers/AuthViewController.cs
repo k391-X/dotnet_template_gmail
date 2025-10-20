@@ -30,6 +30,7 @@ namespace SmtpGmailDemo.Controllers
             return View();
         }
 
+        // Khi nhận thông tin đăng kí
         [HttpPost("/register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {

@@ -176,3 +176,111 @@
   "Succeeded": false,
   "Errors": []
 }
+[2025-10-20 15:41:13] [AuthService.cs:333] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-20 15:41:14] [AuthService.cs:335] ForgotPasswordAsync 2 | {
+  "Id": "50c46ab1-4373-459f-b304-5e0425684899",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": true,
+  "PasswordHash": "AQAAAAIAAYagAAAAELsAJX4wVcwU\u002BTwFYNmMVgjxMVZ87CXFC2yRT5Gv/kvWzmy8eyR8\u002BLS\u002B\u002Bi04gxAb9w==",
+  "SecurityStamp": "DOO34YE5NUASPDR32V27G24CM6IRJC3U",
+  "ConcurrencyStamp": "739c18c7-6e62-4b1f-af0e-3b205d10fcdf",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-20 15:41:14] [AuthService.cs:341] ForgotPasswordAsync 3 | 1ZKbcv0gjTjV2GvaWWitvMYcFYfuItxq9d4JnU38wy8FfTvzFsiS6ZpECK1JMKzDCqwqDAWW0zzBR+tkp6ZIuKGCmSZjkHodwVnWnv6WuXLNYusPxmNPQrXBoava2/FwD0/ODMjWT28pRxpQjjzHMaPbkRNN9AvDfMOdaemlpB7uKVqd/Ws/Y/n58IoaCHslymtQy3ufIvHwrbAWzlj1nia13DhCXj4HLkgCHxbrozX1u1qJTJV+1EjbSClz538ww3RO44BYn/DagaQlCo2UrPU7Vh1Y6MCST58JqtBrCX1PcQuyFjbyPXEeG8IUWHS4+rgl9A25SWabVbsuZBiJBS9hooYccc/q2fIBNMZl/6b6UrECCaVVoCRb4JXTkwck1Z76UvKXPlzx467l/a/LjgdNL9yTHZhZx0DjP/6voRWtRQwDwtJdzUxkUqddBIXlG0Yew/U42wH/hI3CwEMpZGHbkJvlc6FRBSBzXvUsCpJM1N2FjyCKkMgWVhvNj4E83KYFhL3aogVwStN5UC/rDh0zHu6+zAS/VkshYPv21YUbPBnQ55fHuADJVAnRryRE
+[2025-10-20 15:41:17] [AuthService.cs:347] ForgotPasswordAsync 4
+[2025-10-20 15:42:54] [AuthService.cs:352] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-20 15:42:55] [AuthService.cs:354] ForgotPasswordAsync 2 | {
+  "Id": "50c46ab1-4373-459f-b304-5e0425684899",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": true,
+  "PasswordHash": "AQAAAAIAAYagAAAAELsAJX4wVcwU\u002BTwFYNmMVgjxMVZ87CXFC2yRT5Gv/kvWzmy8eyR8\u002BLS\u002B\u002Bi04gxAb9w==",
+  "SecurityStamp": "DOO34YE5NUASPDR32V27G24CM6IRJC3U",
+  "ConcurrencyStamp": "739c18c7-6e62-4b1f-af0e-3b205d10fcdf",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-20 15:42:55] [AuthService.cs:360] ForgotPasswordAsync 3 | mMbeQ1O7O4j2xmcPMPI1KVxHXrXIAKtj21mb9Ho+wwIyUvdx5BiHeJkamn1iOW4amMiI4p9N4aYW794oPQbqmP89HBRmODGuS93Up++FQ9i3dyBly/ndw5GxIirTMC6QNhFaPleVze3rs/l7ehXuTnuV7KfKFIK9KGZt/sEUimAItAjNOxzlzOLe++m3p8Bhjyctl8bCrqovs03hZtw8lKVTNM6ZyfBrpvxgxqJjQyfinfdnW+ifawGzQOG+E78Ail310DuHNLjf9VP2o11Nj5OlPo8hw7yeUcCh+WlRg1bjM3Vnl2yb6mCzflpeS8AMT5mM9t85K7SDibGYzIBHWhjCqLuYTeUngqIFFCKr4lE5ilFUXuLaGciZ6ljNvJox2u3HkPyYM2Uo1YNpD66NYWko3GpzEGTsL7gCo1hNkDuupA7aZEpiOVS7QmtXK7pwpDkbDFOo/oe69nx+7i8YlUh1zj1QRXCnjlKhB0ixhy3GOebNI7XD/wpmHStHtofDBLCqlm6tlUKPBcJLBPx+xIeyjluoW3LmUDUMcHWjWVmZVxaC35Y7Eg+qmD3NEox0
+[2025-10-20 15:42:58] [AuthService.cs:366] ForgotPasswordAsync 4
+[2025-10-20 15:45:18] [AuthService.cs:352] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-20 15:45:18] [AuthService.cs:354] ForgotPasswordAsync 2 | {
+  "Id": "50c46ab1-4373-459f-b304-5e0425684899",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": true,
+  "PasswordHash": "AQAAAAIAAYagAAAAELsAJX4wVcwU\u002BTwFYNmMVgjxMVZ87CXFC2yRT5Gv/kvWzmy8eyR8\u002BLS\u002B\u002Bi04gxAb9w==",
+  "SecurityStamp": "DOO34YE5NUASPDR32V27G24CM6IRJC3U",
+  "ConcurrencyStamp": "739c18c7-6e62-4b1f-af0e-3b205d10fcdf",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-20 15:45:18] [AuthService.cs:360] ForgotPasswordAsync 3 | AT2Inc7annJqdW+mfYjqFix/Wmhvs+BVGohlTLM197J0i/vRpLVMSXT6k+fQMlsDOKarHnlbfRwxpfRrDrS5WE43+i66kLZCP4ca0uwv9y3qPPJHx/imSlYitkvezrFw4Lk+R7u+oNtP3QjoInuaPND2mffoncJaejGi3QpsQ7oFpB2jE9C5zV/LRC4t4cf4AZ8n4Tgt8i15k9I9kJNmmXFsDMGmLWcIFsFq/SIAJtYYzZIWpTt5ZjkJc8nfhvxi5lHSmrLkA5RZdw0/lKHnoafIOWnU2qPZeIhkgv4y91sduoo+VTMO+VhUy13Zx0FtoZbrgW97s8epHDgUmtc/90GKTBvIucW6LKhXFtycXOGZ1PQoeurUBb3CzFZRBGv0MqR9TUhf13hZmgCWbxG9ofQPPbutU3RQQGVPe6ubV93DaH1eGqjVdBOk4yFbrvaT3KQ2Sv5vgKXZ+0kHBCaCn7j9iqYeuKl/FlLObK/qsh8gsNAzzldaYoKt0VG9C7Eyov9cgfeAuTyPFuus2tTFEoVD0PqaK71pwxxI1Rx2uZWNzTpluM9cWNs7bx3xOXSW
+[2025-10-20 15:45:18] [EmailTemplateService.cs:43] GetTemplateFileName | 0
+[2025-10-20 15:45:18] [EmailTemplateService.cs:56] GetSubject | 0
+[2025-10-20 15:45:21] [AuthService.cs:366] ForgotPasswordAsync 4
+[2025-10-20 15:51:54] [AuthService.cs:352] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-20 15:51:54] [AuthService.cs:354] ForgotPasswordAsync 2 | {
+  "Id": "50c46ab1-4373-459f-b304-5e0425684899",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": true,
+  "PasswordHash": "AQAAAAIAAYagAAAAELsAJX4wVcwU\u002BTwFYNmMVgjxMVZ87CXFC2yRT5Gv/kvWzmy8eyR8\u002BLS\u002B\u002Bi04gxAb9w==",
+  "SecurityStamp": "DOO34YE5NUASPDR32V27G24CM6IRJC3U",
+  "ConcurrencyStamp": "739c18c7-6e62-4b1f-af0e-3b205d10fcdf",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-20 15:51:54] [AuthService.cs:360] ForgotPasswordAsync 3 | j2bf+60sKFcH2wlEGOomRzvwDQ/d0y3Xy0ffuKBAlDtanrl9N2JtOWgMh1c/d0bESGVey19UKzvIJON2kBDP3SlaZoeZe7I7qZZiUOFp3wJOyd+mshyghA3O+U1ia/5I+GRZJ87dFlpY+nNn48AvP2ARTcsCc7jm7/aMQAhV8UGeNy+q/NnW523w7v0iq6xXn/tl494QIQJgGDOWqWVEydGFKLJrYnnPLzo4k8BmvCcP1ML3zLS7lUSRiZ4d8G6MHNNF1vsJXo/8poLqYmV6fifDAY1wrRhQNt2OzT9idXTqBOqJHIoeCwbCIPLM/ZIPLW8UVtGcNL5MckoaXRvVNiNlCrN0cJem9HXBsDgC3bz7soPFQaq+EAiCNbvNW3dIGK4cZV0F/m5RhE2kziLviNvF2nZEgVMPA+hMB4EheGq0eO0f6i44KLx8HAGeuBI/N/ORauNkUhjVrvdOuxLr6ZBpH1g86g/qQrnA4fnpra8uKECriBYmIntYbEr/MK6gh8GgrAEK4yfr8N+WD3h9vgAF2qa02XEaOClPD4NbiQdw+7+gGJR9eTNa3Snh5ZbY
+[2025-10-20 15:51:54] [EmailTemplateService.cs:43] GetTemplateFileName | 0
+[2025-10-20 15:51:54] [EmailTemplateService.cs:56] GetSubject | 0
+[2025-10-20 15:51:57] [AuthService.cs:366] ForgotPasswordAsync 4
+[2025-10-20 15:52:28] [AuthService.cs:352] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-20 15:52:29] [AuthService.cs:354] ForgotPasswordAsync 2 | {
+  "Id": "50c46ab1-4373-459f-b304-5e0425684899",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": true,
+  "PasswordHash": "AQAAAAIAAYagAAAAELsAJX4wVcwU\u002BTwFYNmMVgjxMVZ87CXFC2yRT5Gv/kvWzmy8eyR8\u002BLS\u002B\u002Bi04gxAb9w==",
+  "SecurityStamp": "DOO34YE5NUASPDR32V27G24CM6IRJC3U",
+  "ConcurrencyStamp": "739c18c7-6e62-4b1f-af0e-3b205d10fcdf",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-20 15:52:29] [AuthService.cs:360] ForgotPasswordAsync 3 | tbuBmxD3tW5NHmaiG3+GRTVCzreecF1YuE2Y48qSZ01GOEtDSIH2Yxj5+iNWJ9OV1kR66HkFxVd5ixvo4IuSJoNPokeHShgXXMGvjk0D5cNX2MoF4AGbKoGMG/CH1jEWFP7hRdLWcJ4ew72WMuj0qPzmGd/3cQ2dzmUElB44dtyZUTTIHXzqWlw+L/7/sltsBeRJIcd4Ciou7Vu5Q2ZppHO7iYXZT8VI0BWnUmRkpBDoufnZKncltpa4Ga4UsW0z6Cnn5ILgGVKrV23sExeAdKpAn6yU3w5DUpo83sZN+sddDADTComu0DiMP25RFC/3+Y3ZDSMr7SKkK4tsN+asKMH3mDZVgxDElP3OxbRZokahLs5LmvoN/TBj2gRuME7QPs130ISkK03dMbNizMxO4QON1JtUdVWAcHV40gsl9IGVSs8qZwjRVlpR+tjDguQyLOiCmGpxj29ZYibToiF/Mk8IlRuzrzwo2E5MKz584h/Gj1wzBW6+fclRFvbR3ni7K/c2BeWasCnUvKbENipJtgxcQrzkM7QdmQd9MKn0bK+OkpI0EH7GzxPua24NutYt
+[2025-10-20 15:52:29] [EmailTemplateService.cs:43] GetTemplateFileName - Enum Value | 0
+[2025-10-20 15:52:29] [EmailTemplateService.cs:44] GetTemplateFileName - Int Value | 0
+[2025-10-20 15:52:29] [EmailTemplateService.cs:57] GetSubject - Enum Value | 0
+[2025-10-20 15:52:29] [EmailTemplateService.cs:58] GetSubject - Int Value | 0
+[2025-10-20 15:52:32] [AuthService.cs:366] ForgotPasswordAsync 4

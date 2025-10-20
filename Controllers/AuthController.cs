@@ -97,7 +97,7 @@ namespace SmtpGmailDemo.Controllers
         // 1️⃣ Quên mật khẩu - Gửi token đặt lại mật khẩu qua email
         [HttpPost("forgot-password")]
         [EnableRateLimiting("forgotPasswordLimiter")] // Gắn policy đã tạo
-        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPassword model)
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)

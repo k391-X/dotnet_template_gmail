@@ -97,7 +97,7 @@ namespace SmtpGmailDemo.Controllers
             var result = await _authService.ConfirmEmailAsync(trueToken);
 
             Logger.Log("result Token", result);
-            
+
             if (!result.Succeeded)
             {
                 ViewBag.Message = result.Errors.First().Description;
@@ -116,7 +116,26 @@ namespace SmtpGmailDemo.Controllers
         [HttpGet("/forgot-password")]
         public IActionResult ForgotPassword()
         {
-            return View("~/Views/Auth/ForgotPassword.cshtml");
+            return View("~/Views/AuthView/ForgotPassword.cshtml", new ForgotPasswordViewModel());
+        }
+
+        // Khi click submit gửi liên kết quên mật khẩu
+        [HttpPost("/forgot-password")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View("~/Views/AuthView/ForgotPassword.cshtml", model); // trả về cùng view
+
+            var resetLink = await _authService.ForgotPasswordAsync(model);
+
+            if (string.IsNullOrEmpty(resetLink))
+            {
+                ModelState.AddModelError(string.Empty, "Email không tồn tại hoặc chưa được xác thực.");
+                return View("~/Views/AuthView/ForgotPassword.cshtml", model);
+            }
+
+            ViewBag.Success = $"Liên kết đặt lại mật khẩu đã được gửi tới {model.Email}.";
+            return View("~/Views/AuthView/ForgotPasswordConfirmation.cshtml");
         }
 
         // Trang đặt lại mật khẩu

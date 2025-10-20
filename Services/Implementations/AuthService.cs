@@ -306,7 +306,7 @@ namespace SmtpGmailDemo.Services.Implementations
             return GenerateJwtToken(user);
         }
 
-        public async Task<string?> ForgotPasswordAsync(ForgotPassword model)
+        public async Task<string?> ForgotPasswordAsync(ForgotPasswordViewModel model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null) return null;

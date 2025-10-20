@@ -137,3 +137,42 @@
   "Succeeded": false,
   "Errors": []
 }
+[2025-10-20 14:36:11] [AuthService.cs:36] existingUser
+[2025-10-20 14:36:25] [AuthService.cs:250] ✅ Validate Result: | OK
+[2025-10-20 14:36:25] [AuthService.cs:286] ✅ Email đã được xác thực thành công: | UserId=0bf28b24-073b-4b66-9f82-0f376d1c63c8
+[2025-10-20 14:36:25] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 14:59:52] [AuthViewController.cs:126] model ForgotPassword | {}
+[2025-10-20 14:59:59] [AuthViewController.cs:126] model ForgotPassword | {}
+[2025-10-20 15:00:05] [AuthViewController.cs:126] model ForgotPassword | {}
+[2025-10-20 15:01:47] [AuthViewController.cs:126] model ForgotPassword | {}
+[2025-10-20 15:04:59] [AuthService.cs:36] existingUser | {
+  "Id": "0bf28b24-073b-4b66-9f82-0f376d1c63c8",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": true,
+  "PasswordHash": "AQAAAAIAAYagAAAAEEoyWo4Fw7irDY6aRkJv8gnUfCWlsy3Gr3Ggkd1JwrdjU2ENJAWAe/x1Zby6Eb\u002BSgw==",
+  "SecurityStamp": "OBEWQK5KCHV4NR4DYKWW5RKZLIZZLPTL",
+  "ConcurrencyStamp": "e4a3080c-bbae-43f6-9e4d-36a247e1f8f4",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-20 15:05:10] [AuthService.cs:36] existingUser
+[2025-10-20 15:06:33] [AuthService.cs:250] ✅ Validate Result: | OK
+[2025-10-20 15:06:33] [AuthService.cs:286] ✅ Email đã được xác thực thành công: | UserId=50c46ab1-4373-459f-b304-5e0425684899
+[2025-10-20 15:06:33] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 15:06:43] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 15:06:43] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 15:06:43] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}

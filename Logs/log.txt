@@ -1,1 +1,139 @@
-[2025-10-20 02:01:59] [AuthViewController.cs:93] a | qưeqweqw
+[2025-10-20 12:26:53] [AuthService.cs:251] ✅ Validate Result: | OK
+[2025-10-20 12:26:53] [AuthService.cs:267] 🔍 Token DB: | UserId=108e91d0-7a98-4785-94d5-bc8a39869fc6, Exp=10/20/2025 5:48:53 AM, Type=VerifyEmail
+[2025-10-20 12:26:53] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 13:17:40] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:17:40] [AuthService.cs:255] ❌ Validate Error: | TokenExpired - Token đã hết hạn. Vui lòng yêu cầu token mới.
+[2025-10-20 13:17:40] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:17:57] [AuthService.cs:36] existingUser | {
+  "Id": "108e91d0-7a98-4785-94d5-bc8a39869fc6",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": false,
+  "PasswordHash": "AQAAAAIAAYagAAAAEDN422OxwwrtqwxVxGwSxA3oN4k1vN\u002BxsHJEp6s1Y/T\u002BjT8kqCtICX1X3wzcwxwsdA==",
+  "SecurityStamp": "MNQCK5DI3GJLUHQHFRSWBEASWDYVBWS5",
+  "ConcurrencyStamp": "25cbab38-9ec6-4a05-90e2-319b0970c83c",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-20 13:18:35] [AuthService.cs:250] ✅ Validate Result: | OK
+[2025-10-20 13:18:35] [AuthService.cs:286] ✅ Email đã được xác thực thành công: | UserId=108e91d0-7a98-4785-94d5-bc8a39869fc6
+[2025-10-20 13:18:35] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 13:22:32] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:22:32] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:22:32] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:23:04] [AuthService.cs:36] existingUser
+[2025-10-20 13:23:15] [AuthService.cs:250] ✅ Validate Result: | OK
+[2025-10-20 13:23:15] [AuthService.cs:286] ✅ Email đã được xác thực thành công: | UserId=39b6c461-2a6d-4ddc-89eb-ba1bdfbee001
+[2025-10-20 13:23:15] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 13:26:29] [AuthService.cs:36] existingUser
+[2025-10-20 13:26:45] [AuthService.cs:250] ✅ Validate Result: | OK
+[2025-10-20 13:26:45] [AuthService.cs:286] ✅ Email đã được xác thực thành công: | UserId=dd55e05c-f6ef-4a55-b74c-34cf46886fac
+[2025-10-20 13:26:45] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 13:32:34] [AuthService.cs:36] existingUser
+[2025-10-20 13:32:52] [AuthService.cs:250] ✅ Validate Result: | OK
+[2025-10-20 13:32:52] [AuthService.cs:286] ✅ Email đã được xác thực thành công: | UserId=f8dc9519-10e2-4b0f-94ee-b7ec09b75294
+[2025-10-20 13:32:52] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 13:33:07] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:33:07] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:33:07] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:36:57] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:36:57] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:36:57] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:38:17] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:38:17] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:38:17] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:41:10] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:41:10] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:41:10] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:51:55] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:51:55] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:51:55] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:54:05] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:54:05] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:54:05] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:54:29] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:54:29] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:54:29] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:57:15] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:57:15] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:57:15] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:59:04] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:59:04] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:59:04] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 13:59:58] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 13:59:58] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 13:59:58] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 14:00:00] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 14:00:00] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 14:00:00] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}
+[2025-10-20 14:00:24] [AuthService.cs:36] existingUser
+[2025-10-20 14:00:44] [AuthService.cs:250] ✅ Validate Result: | OK
+[2025-10-20 14:00:45] [AuthService.cs:286] ✅ Email đã được xác thực thành công: | UserId=9a00523c-99d2-428e-abf0-2aecb6bf1f13
+[2025-10-20 14:00:45] [AuthViewController.cs:99] result Token | {
+  "Succeeded": true,
+  "Errors": []
+}
+[2025-10-20 14:01:22] [AuthService.cs:250] ✅ Validate Result: | FAILED
+[2025-10-20 14:01:22] [AuthService.cs:255] ❌ Validate Error: | TokenNotFound - Token không tồn tại hoặc đã bị thu hồi.
+[2025-10-20 14:01:22] [AuthViewController.cs:99] result Token | {
+  "Succeeded": false,
+  "Errors": []
+}

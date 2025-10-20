@@ -31,35 +31,74 @@ namespace SmtpGmailDemo.Services.Implementations
 
         public async Task<IdentityResult> RegisterUserAsync(Register model)
         {
-            // Kiểm tra trùng email
+            // 1️⃣ Kiểm tra user đã tồn tại
             var existingUser = await _userManager.FindByEmailAsync(model.Email);
+            Logger.Log("existingUser", existingUser);
+
+            ApplicationUser user;
+            bool isNewUser = false;
+
             if (existingUser != null)
             {
-                return IdentityResult.Failed(new IdentityError { Description = "Email đã tồn tại" });
+                // Nếu đã xác thực email → lỗi trùng email
+                if (existingUser.EmailConfirmed)
+                {
+                    return IdentityResult.Failed(new IdentityError 
+                    { 
+                        Description = "Email đã tồn tại và đã được xác thực." 
+                    });
+                }
+
+                // Chưa xác thực → chỉ dùng user cũ
+                user = existingUser;
+
+                // ❌ Xóa tất cả token VerifyEmail cũ trước khi tạo token mới
+                var oldTokens = _context.CustomUserTokens
+                    .Where(t => t.UserId == user.Id && t.TokenType == TokenType.VerifyEmail);
+                _context.CustomUserTokens.RemoveRange(oldTokens);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                // Nếu user chưa tồn tại → tạo mới
+                user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (!result.Succeeded)
+                    return result;
+
+                isNewUser = true;
             }
 
-            var user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email
-            };
-
-            // Tạo user mới
-            var resultUser = await _userManager.CreateAsync(user, model.Password);
-            if (!resultUser.Succeeded)
-                return resultUser;
-
-            // ✅ Sinh token xác thực, mã hóa, lưu db
+            // 2️⃣ Sinh token xác thực mới
             var encryptedToken = await GenerateAndStoreTokenAsync(user);
-            // ✅ Tạo link xác thực
-            var confirmUrl = $"http://localhost:7042/verify?token={encryptedToken}";
+            var encodedToken = Uri.EscapeDataString(encryptedToken);
+            var confirmUrl = $"http://localhost:7042/verify?token={encodedToken}";
 
-            // ✅ Gửi email xác thực qua EmailTemplateService
+            // 3️⃣ Gửi email xác thực
+            await SendVerificationEmailAsync(user, confirmUrl);
+
+            // 4️⃣ Trả kết quả
+            if (isNewUser)
+                return IdentityResult.Success; // user mới đã tạo thành công
+            else
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Email đã được đăng ký nhưng chưa xác thực. Email xác thực mới đã được gửi."
+                });
+        }
+
+        // Phương thức gửi email xác thực
+        private async Task SendVerificationEmailAsync(ApplicationUser user, string confirmUrl)
+        {
             var placeholders = new Dictionary<string, string>
             {
                 {"Name", user.Email.Split('@')[0]},
                 {"Email", user.Email},
-                {"Token", encryptedToken},
                 {"LinkConfirm", confirmUrl},
                 {"LifeTime", "30 phút"},
                 {"NameCompany", "Tạp chí điện tử THT"}
@@ -70,8 +109,6 @@ namespace SmtpGmailDemo.Services.Implementations
                 user.Email,
                 placeholders
             );
-
-            return resultUser;
         }
 
         // Kiểm tra đã tồn tại email
@@ -148,11 +185,11 @@ namespace SmtpGmailDemo.Services.Implementations
         }
 
         // Validate token
-        public async Task<IdentityResult> ValidateStoredTokenAsync(string userId, string token, TokenType expectedType)
+        public async Task<IdentityResult> ValidateStoredTokenAsync(string token, TokenType expectedType)
         {
             var dbToken = await _context.CustomUserTokens
                 .FirstOrDefaultAsync(t =>
-                    t.UserId == userId &&
+                    t.EncryptedToken == token &&
                     t.TokenType == expectedType);
 
             if (dbToken == null)
@@ -177,8 +214,8 @@ namespace SmtpGmailDemo.Services.Implementations
                 });
             }
 
-            // 2️⃣ So sánh token gốc (chưa mã hóa)
-            if (dbToken.OriginalToken != token)
+            // 2️⃣ So sánh token đã mã hóa
+            if (dbToken.EncryptedToken != token)
             {
                 return IdentityResult.Failed(new IdentityError
                 {
@@ -203,26 +240,61 @@ namespace SmtpGmailDemo.Services.Implementations
             }
         }
 
-        // Gửi gmail hoàn tất xác nhận
-        private async Task SendVerificationEmailAsync(ApplicationUser user, string token)
+        public async Task<IdentityResult> ConfirmEmailAsync(string encryptedToken)
         {
-            var encodedToken = Uri.EscapeDataString(token);
-            var confirmUrl = $"{_configuration["AppSettings:FrontendUrl"]}/verify?email={user.Email}&token={encodedToken}";
-
-            var placeholders = new Dictionary<string, string>
+            try
             {
-                {"Name", user.Email.Split('@')[0]},
-                {"Email", user.Email},
-                {"Token", token},
-                {"LinkConfirm", confirmUrl},
-                {"LifeTime", "24 giờ"}
-            };
+                // 1️⃣ Validate token (đảm bảo chưa hết hạn, đúng loại)
+                var dbTokenResult = await ValidateStoredTokenAsync(encryptedToken, TokenType.VerifyEmail);
 
-            await _emailTemplateService.SendEmailAsync(
-                EmailTemplateType.VerifyAccount,
-                user.Email,
-                placeholders
-            );
+                Logger.Log("✅ Validate Result:", dbTokenResult.Succeeded ? "OK" : "FAILED");
+
+                if (!dbTokenResult.Succeeded)
+                {
+                    foreach (var err in dbTokenResult.Errors)
+                        Logger.Log("❌ Validate Error:", $"{err.Code} - {err.Description}");
+
+                    return dbTokenResult;
+                }
+
+                // 2️⃣ Lấy token từ DB
+                var dbToken = await _context.CustomUserTokens
+                    .FirstOrDefaultAsync(t => t.EncryptedToken == encryptedToken);
+
+                if (dbToken == null)
+                    return IdentityResult.Failed(new IdentityError
+                    {
+                        Description = "Token không tồn tại trong DB."
+                    });
+
+                // 3️⃣ Lấy user liên quan
+                var user = await _userManager.FindByIdAsync(dbToken.UserId);
+                if (user == null)
+                    return IdentityResult.Failed(new IdentityError
+                    {
+                        Description = "User không tồn tại."
+                    });
+
+                // 4️⃣ Cập nhật EmailConfirmed = true
+                user.EmailConfirmed = true;
+                await _userManager.UpdateAsync(user);
+
+                // 5️⃣ Xóa token sau khi dùng
+                _context.CustomUserTokens.Remove(dbToken);
+                await _context.SaveChangesAsync();
+
+                Logger.Log("✅ Email đã được xác thực thành công:", $"UserId={user.Id}");
+
+                return IdentityResult.Success;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("🔥 Exception in ConfirmEmailAsync:", ex.Message);
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Lỗi hệ thống khi xác nhận email."
+                });
+            }
         }
 
         public async Task<string?> LoginAsync(Login model)

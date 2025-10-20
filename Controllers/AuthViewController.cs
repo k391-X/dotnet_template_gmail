@@ -1,8 +1,9 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
-using SmtpGmailDemo.Models;
 
-using SmtpGmailDemo.Services.Interfaces;
 using SmtpGmailDemo.Utils;
+using SmtpGmailDemo.Models;
+using SmtpGmailDemo.Services.Interfaces;
 
 namespace SmtpGmailDemo.Controllers
 {
@@ -89,8 +90,20 @@ namespace SmtpGmailDemo.Controllers
                 ViewBag.Status = "error";
                 return View("Verify");
             }
+            
+            // Giải mã token từ URL
+            var trueToken = Uri.UnescapeDataString(token);
 
-            Logger.Log("a", token);
+            var result = await _authService.ConfirmEmailAsync(trueToken);
+
+            Logger.Log("result Token", result);
+            
+            if (!result.Succeeded)
+            {
+                ViewBag.Message = result.Errors.First().Description;
+                ViewBag.Status = "error";                    
+                return View("Verify");
+            }
 
             // Cập nhật xác nhận email
             // var user = await _authService.ConfirmEmailAsync(userId);

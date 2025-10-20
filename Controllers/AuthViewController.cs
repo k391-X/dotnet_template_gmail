@@ -23,6 +23,15 @@ namespace SmtpGmailDemo.Controllers
             return View("~/Views/AuthView/Login.cshtml");
         }
 
+        // Trang đăng nhập khi click 
+        [HttpPost("/login")]
+        public async Task<IActionResult> Login(Login model)
+        {   
+            var result = await _authService.LoginAsync(model);
+            Logger.Log("OK Login", result);
+            return Ok();
+        }
+
         // Trang đăng ký
         [HttpGet("/register")]
         public IActionResult Register()

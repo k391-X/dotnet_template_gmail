@@ -492,3 +492,64 @@
 }
 [2025-10-21 01:02:57] [AuthService.cs:400] ✅ Validate Result: | OK
 [2025-10-21 01:02:57] [AuthService.cs:440] ✅ Password reset successfully for user | cmthang2407@gmail.com
+[2025-10-21 01:12:13] [AuthService.cs:376] LoginAsync | Tài khoản cmthang2407@gmail.com chưa xác thực email.
+[2025-10-21 01:12:13] [AuthViewController.cs:31] OK Login
+[2025-10-21 01:12:34] [AuthService.cs:369] LoginAsync | Sai mật khẩu cho email: cmthang2407@gmail.com
+[2025-10-21 01:12:34] [AuthViewController.cs:31] OK Login
+[2025-10-21 01:15:06] [AuthService.cs:389] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-21 01:15:07] [AuthService.cs:391] ForgotPasswordAsync 2 | {
+  "Id": "d009438b-3f73-4ceb-aede-4b3036ca9cf3",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": false,
+  "PasswordHash": "AQAAAAIAAYagAAAAEA1yQGMesPGZH/Deg8XHLKTfe1M7Yq6KYyz5xEifEMufq91/ufNzetOStxnIKs0iaw==",
+  "SecurityStamp": "BUEMX3K44SSIHKUT4TQGCW524DWU5UA4",
+  "ConcurrencyStamp": "472642d9-bc63-4d4d-9b90-66771b22e684",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-21 01:15:07] [AuthService.cs:403] ForgotPasswordAsync 3 | R9C1y1QfzmKvZiwfLecJADUFjLLqcUStpml1IF1MVzfO7A%2BuWhxv2VOM%2BBdDdvMugxtGqniyiHmBWm9CY%2Fv%2B%2BRqzGkLJhD9TLVNMkm6fAcpCOU6Cl%2BDicXS5YJzWfQ3gDx%2F9m9wcahVP38rK21QFasuZdWk8XnSXl%2B7HK86KW%2FdJtrUrDXZmzRg2ro27UDKJ%2FXtyI8O7KiwdRK%2FB4GqvJjdirAHMqkBPJ%2BEPWYQceTSCMCdV1V2na75PM1x5Uf7L%2BHv8TTZzHW4JOddnHtwMalTXfBB4zi8irQV70JsrtKfl9C7IFJ%2FJXo2fo1GHheBo5o516XPerUDMor%2BUWGi3ood9AC7due%2BK3%2Brohu7HySX6pM4Nvdwnhe2tM54GdJxK%2FG%2Fc%2BuZNqpNQntcXnkFb%2Be%2BmZRz%2FC6nA1LVYpavThG0gFLNAACSSOvtwspy9D0mcRuQc%2FP2SL0bj70n%2FGhmoIrVVv%2BtZ%2BlXqDuW4pL5PbM90%2BgELUaaQDVlCZ%2BClpV5BTXWB%2FJMPl9b2y5XowKab4foVwkvqnhrJA1eSYtS7%2FUeuSVR06LS91QC9VM9UpfIl
+[2025-10-21 01:15:07] [EmailTemplateService.cs:43] GetTemplateFileName - Enum Value | 0
+[2025-10-21 01:15:07] [EmailTemplateService.cs:44] GetTemplateFileName - Int Value | 0
+[2025-10-21 01:15:07] [EmailTemplateService.cs:57] GetSubject - Enum Value | 0
+[2025-10-21 01:15:07] [EmailTemplateService.cs:58] GetSubject - Int Value | 0
+[2025-10-21 01:15:10] [AuthService.cs:409] ForgotPasswordAsync 4
+[2025-10-21 01:15:19] [AuthViewController.cs:152] ResetPassword - GET token | R9C1y1QfzmKvZiwfLecJADUFjLLqcUStpml1IF1MVzfO7A+uWhxv2VOM+BdDdvMugxtGqniyiHmBWm9CY/v++RqzGkLJhD9TLVNMkm6fAcpCOU6Cl+DicXS5YJzWfQ3gDx/9m9wcahVP38rK21QFasuZdWk8XnSXl+7HK86KW/dJtrUrDXZmzRg2ro27UDKJ/XtyI8O7KiwdRK/B4GqvJjdirAHMqkBPJ+EPWYQceTSCMCdV1V2na75PM1x5Uf7L+Hv8TTZzHW4JOddnHtwMalTXfBB4zi8irQV70JsrtKfl9C7IFJ/JXo2fo1GHheBo5o516XPerUDMor+UWGi3ood9AC7due+K3+rohu7HySX6pM4Nvdwnhe2tM54GdJxK/G/c+uZNqpNQntcXnkFb+e+mZRz/C6nA1LVYpavThG0gFLNAACSSOvtwspy9D0mcRuQc/P2SL0bj70n/GhmoIrVVv+tZ+lXqDuW4pL5PbM90+gELUaaQDVlCZ+ClpV5BTXWB/JMPl9b2y5XowKab4foVwkvqnhrJA1eSYtS7/UeuSVR06LS91QC9VM9UpfIl
+[2025-10-21 01:15:32] [AuthViewController.cs:169] ResetPassword - POST model | {
+  "Token": "****",
+  "NewPassword": "abc123456",
+  "ConfirmPassword": "abc123456"
+}
+[2025-10-21 01:15:32] [AuthService.cs:417] ResetPasswordAsync 1 | {
+  "Token": "****",
+  "NewPassword": "abc123456",
+  "ConfirmPassword": "abc123456"
+}
+[2025-10-21 01:15:32] [AuthService.cs:424] ✅ Validate Result: | OK
+[2025-10-21 01:15:32] [AuthService.cs:462] 🔍 Verify new password | ✅ OK
+[2025-10-21 01:15:32] [AuthService.cs:471] ✅ Password reset successfully for user | cmthang2407@gmail.com
+[2025-10-21 01:17:51] [AuthService.cs:389] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-21 01:17:52] [AuthService.cs:393] ForgotPasswordAsync 2 | {
+  "Id": "d009438b-3f73-4ceb-aede-4b3036ca9cf3",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": false,
+  "PasswordHash": "AQAAAAIAAYagAAAAEIN7JHfA2lTvBbrMccyRU/OZy9Ea\u002BHPWKFEDNkNbnq8qnVPfAg4iv91flJXbzE\u002BmxQ==",
+  "SecurityStamp": "BUEMX3K44SSIHKUT4TQGCW524DWU5UA4",
+  "ConcurrencyStamp": "3a743981-641b-4f84-abd2-3efdbab73e8f",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-21 01:17:52] [AuthService.cs:404] ❌ Email chưa được xác thực. Không thể gửi link đặt lại mật khẩu.

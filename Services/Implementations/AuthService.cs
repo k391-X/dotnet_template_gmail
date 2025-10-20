@@ -353,38 +353,79 @@ namespace SmtpGmailDemo.Services.Implementations
 
         public async Task<string?> LoginAsync(Login model)
         {
+            // 🔹 Tìm user theo email
             var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password)) return null;
-            if (!user.EmailConfirmed) return null;
 
-            return GenerateJwtToken(user);
+            if (user == null)
+            {
+                Logger.Log("LoginAsync", $"Không tìm thấy người dùng với email: {model.Email}");
+                return null; // hoặc throw exception nếu muốn xử lý phía trên
+            }
+
+            // 🔹 Kiểm tra mật khẩu
+            var isPasswordValid = await _userManager.CheckPasswordAsync(user, model.Password);
+            if (!isPasswordValid)
+            {
+                Logger.Log("LoginAsync", $"Sai mật khẩu cho email: {model.Email}");
+                return null;
+            }
+
+            // 🔹 Kiểm tra email đã xác thực chưa
+            if (!user.EmailConfirmed)
+            {
+                Logger.Log("LoginAsync", $"Tài khoản {model.Email} chưa xác thực email.");
+                return null;
+            }
+
+            // 🔹 Tạo token JWT
+            var token = GenerateJwtToken(user);
+            Logger.Log("LoginAsync", $"Đăng nhập thành công: {model.Email}");
+
+            return token;
         }
 
         public async Task<string?> ForgotPasswordAsync(ForgotPasswordViewModel model)
         {
             Logger.Log("ForgotPasswordAsync 1", model);
+
+            // 1️⃣ Kiểm tra người dùng có tồn tại hay không
             var user = await _userManager.FindByEmailAsync(model.Email);
             Logger.Log("ForgotPasswordAsync 2", user);
 
-            if (user == null) return null;
+            if (user == null)
+            {
+                Logger.Log("❌ Email không tồn tại trong hệ thống.");
+                return null;
+            }
 
-            // ❌ Xóa tất cả token ChangePassword cũ trước khi tạo token mới
+            // 2️⃣ Kiểm tra email đã xác thực chưa
+            if (!user.EmailConfirmed)
+            {
+                Logger.Log("❌ Email chưa được xác thực. Không thể gửi link đặt lại mật khẩu.");
+                return null;
+            }
+
+            // 3️⃣ Xóa tất cả token ResetPassword cũ
             var oldTokens = _context.CustomUserTokens
                 .Where(t => t.UserId == user.Id && t.TokenType == TokenType.ResetPassword);
+
             _context.CustomUserTokens.RemoveRange(oldTokens);
             await _context.SaveChangesAsync();
 
-            // 2️⃣ Sinh token thay đổi mật khẩu mới
+            Logger.Log("🧹 Đã xóa token cũ của user:", user.Email);
+
+            // 4️⃣ Tạo token reset mới
             var encodedToken = await GenerateAndStoreTokenForgotPasswordAsync(user);
-            Logger.Log("ForgotPasswordAsync 3", encodedToken);
+            Logger.Log("ForgotPasswordAsync 3 - Token mới:", encodedToken);
 
-            var resetPasswordUrl = $"http://localhost:7042/reset-password?email={model.Email}&token={encodedToken}";
+            // 5️⃣ Tạo link gửi qua email
+            var resetPasswordUrl = $"http://localhost:7042/reset-password?token={encodedToken}";
 
-            // 3️⃣ Gửi email chứa token để reset password
+            // 6️⃣ Gửi email reset mật khẩu
             await SendForgotPasswordAsync(user, resetPasswordUrl);
-            Logger.Log("ForgotPasswordAsync 4");
+            Logger.Log("ForgotPasswordAsync 4 - Đã gửi email reset password cho:", user.Email);
 
-            // Nếu thành công → trả về link reset (hoặc có thể trả về thông báo success)
+            // 7️⃣ Trả về link reset (chủ yếu phục vụ debug)
             return resetPasswordUrl;
         }
 
@@ -432,6 +473,13 @@ namespace SmtpGmailDemo.Services.Implementations
             var updateResult = await _userManager.UpdateAsync(user);
             if (!updateResult.Succeeded)
                 return updateResult;
+
+            // 5️⃣ Test Kiểm tra lại xem hash mới có khớp không (chỉ để xác minh)
+            var isMatch = await _userManager.CheckPasswordAsync(user, model.NewPassword);
+            Logger.Log("🔍 Verify new password", isMatch ? "✅ OK" : "❌ FAILED");
+
+            if (!isMatch)
+                return IdentityResult.Failed(new IdentityError { Description = "Cập nhật mật khẩu thất bại — xác minh không khớp." });
 
             // ✅ 7️⃣ Xóa token sau khi dùng (tránh reuse)
             _context.CustomUserTokens.Remove(dbToken);

@@ -8,7 +8,7 @@ namespace SmtpGmailDemo.Services.Interfaces
         Task<IdentityResult> RegisterUserAsync(Register model);
         Task<string?> LoginAsync(Login model);
         Task<string?> ForgotPasswordAsync(ForgotPasswordViewModel model);
-        Task<IdentityResult> ResetPasswordAsync(ResetPassword model);
+        Task<IdentityResult> ResetPasswordAsync(ResetPasswordViewModel model);
         Task<IdentityResult> ConfirmEmailAsync(string encryptedToken);
     }
 }

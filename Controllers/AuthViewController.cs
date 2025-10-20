@@ -92,10 +92,7 @@ namespace SmtpGmailDemo.Controllers
                 return View("Verify");
             }
             
-            // Giải mã token từ URL
-            var trueToken = Uri.UnescapeDataString(token);
-
-            var result = await _authService.ConfirmEmailAsync(trueToken);
+            var result = await _authService.ConfirmEmailAsync(token);
 
             Logger.Log("result Token", result);
 
@@ -139,13 +136,38 @@ namespace SmtpGmailDemo.Controllers
             return View("~/Views/AuthView/ForgotPasswordConfirmation.cshtml");
         }
 
-        // Trang đặt lại mật khẩu
+        // ✅ Hiển thị trang đặt lại mật khẩu khi người dùng nhấn link trong email
         [HttpGet("/reset-password")]
-        public IActionResult ResetPassword(string email, string token)
+        public IActionResult ResetPassword([FromQuery] string token)
         {
-            ViewBag.Email = email;
+            Logger.Log("ResetPassword - GET token", token ?? "null");
+
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                ViewBag.Token = null;
+                return View("~/Views/AuthView/ResetPassword.cshtml");
+            }
+
+            // ✅ Gán token vào ViewBag hoặc ViewModel để form POST sử dụng lại
             ViewBag.Token = token;
-            return View("~/Views/Auth/ResetPassword.cshtml");
+            return View("~/Views/AuthView/ResetPassword.cshtml");
+        }
+
+        // ✅ Xử lý khi người dùng bấm nút "Đặt lại mật khẩu"
+        [HttpPost("/reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            Logger.Log("ResetPassword - POST model", model);
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Token = model.Token;
+                return View("~/Views/AuthView/ResetPassword.cshtml", model);
+            }
+
+            await _authService.ResetPasswordAsync(model);
+
+            return View("~/Views/AuthView/ResetPasswordConfirmation.cshtml");
         }
     }
 }

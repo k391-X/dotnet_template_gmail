@@ -387,3 +387,108 @@
 [2025-10-20 23:35:41] [EmailTemplateService.cs:57] GetSubject - Enum Value | 0
 [2025-10-20 23:35:41] [EmailTemplateService.cs:58] GetSubject - Int Value | 0
 [2025-10-20 23:35:44] [AuthService.cs:373] ForgotPasswordAsync 4
+[2025-10-21 00:08:58] [AuthViewController.cs:146] Reset-password 1 | {}
+[2025-10-21 00:08:58] [AuthViewController.cs:147] Reset-password 2
+[2025-10-21 00:08:58] [AuthViewController.cs:148] Reset-password 3
+[2025-10-21 00:09:07] [AuthViewController.cs:146] Reset-password 1 | {}
+[2025-10-21 00:09:07] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:09:07] [AuthViewController.cs:148] Reset-password 3 | cmthang2407@gmail.com
+[2025-10-21 00:18:04] [AuthViewController.cs:146] Reset-password 1 | {}
+[2025-10-21 00:18:04] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:18:04] [AuthViewController.cs:148] Reset-password 3 | cmthang2407@gmail.com
+[2025-10-21 00:18:05] [AuthViewController.cs:146] Reset-password 1 | {}
+[2025-10-21 00:18:05] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:18:05] [AuthViewController.cs:148] Reset-password 3 | cmthang2407@gmail.com
+[2025-10-21 00:18:18] [AuthViewController.cs:146] Reset-password 1 | {}
+[2025-10-21 00:18:18] [AuthViewController.cs:147] Reset-password 2
+[2025-10-21 00:18:18] [AuthViewController.cs:148] Reset-password 3
+[2025-10-21 00:18:35] [AuthViewController.cs:146] Reset-password 1 | {
+  "Token": "****",
+  "NewPassword": "",
+  "ConfirmPassword": ""
+}
+[2025-10-21 00:18:35] [AuthViewController.cs:147] Reset-password 2
+[2025-10-21 00:18:35] [AuthViewController.cs:148] Reset-password 3
+[2025-10-21 00:18:41] [AuthViewController.cs:146] Reset-password 1 | {
+  "Token": "****",
+  "NewPassword": "",
+  "ConfirmPassword": ""
+}
+[2025-10-21 00:18:41] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:18:41] [AuthViewController.cs:148] Reset-password 3 | cmthang2407@gmail.com
+[2025-10-21 00:18:43] [AuthViewController.cs:146] Reset-password 1 | {
+  "Token": "****",
+  "NewPassword": "",
+  "ConfirmPassword": ""
+}
+[2025-10-21 00:18:43] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:18:43] [AuthViewController.cs:148] Reset-password 3 | cmthang2407@gmail.com
+[2025-10-21 00:19:03] [AuthViewController.cs:146] Reset-password 1 | {
+  "Token": "****",
+  "NewPassword": "",
+  "ConfirmPassword": ""
+}
+[2025-10-21 00:19:03] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:19:03] [AuthViewController.cs:148] Reset-password 3
+[2025-10-21 00:19:04] [AuthViewController.cs:146] Reset-password 1 | {
+  "Token": "****",
+  "NewPassword": "",
+  "ConfirmPassword": ""
+}
+[2025-10-21 00:19:04] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:19:04] [AuthViewController.cs:148] Reset-password 3
+[2025-10-21 00:19:18] [AuthViewController.cs:146] Reset-password 1 | {
+  "Token": "****",
+  "NewPassword": "",
+  "ConfirmPassword": ""
+}
+[2025-10-21 00:19:18] [AuthViewController.cs:147] Reset-password 2 | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:19:18] [AuthViewController.cs:148] Reset-password 3
+[2025-10-21 00:53:01] [AuthViewController.cs:143] ResetPassword - GET token | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:53:01] [AuthViewController.cs:154] ResetPassword - decoded token | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:58:09] [AuthViewController.cs:143] ResetPassword - GET token | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:58:09] [AuthViewController.cs:154] ResetPassword - decoded token | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:58:24] [AuthViewController.cs:143] ResetPassword - GET token | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:58:28] [AuthViewController.cs:143] ResetPassword - GET token | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:58:35] [AuthViewController.cs:143] ResetPassword - GET token | /2h8DXhTYOGfP6laORqbCbpwY5zLFkyQVjhlzQ6SE1Kucee5rfwaWjBtvGCmjE6fVnEZvCs7gxH0/Kjs 3/8LEZcArool0aWZI5L3wA0PBq1NoOwxLhajchD0KrTBavZs1sFqxKFXl9 RUhoLhK y2n vcW KJaDmv5Ep/19OWw0Y9LDu L8HALsSOuXQWcsTBwI6cO4gF3ebaRJwoIdxwveDOLLyGx0ZbTueNxEDrWf0O9ceZD2N83Ny56FKUu70yx1lA4hJkI1ydbv4EMKdI7uok8ER0mLDqo3pmyjdmlHfydHT7fN7wGcdZaa4GQCm3GS4yCVcqD/TvoDlfXgadHU5RpH 5w2IyccScf0m2n6hmVphVQ1/ATg6GW8URWhti6skctKf5ZCbExpmVCRcHHggiXbO8EUNVZGCTFQC VpcjCqZ1T/AVf8fNeWh7RLJ w7mmH/1o3Qmwx21Y0BwoGhb5l8Ua4 dtOGl1FU2myuBLBKw8KIaZcLd52knU67WgEIs8NakaKGrxyHoslinM4vr03/j0Etk2djEFB0rN 2M/6qpcgcp9CqEmcSytoQ
+[2025-10-21 00:58:44] [AuthService.cs:365] ForgotPasswordAsync 1 | {
+  "Email": "cmthang2407@gmail.com"
+}
+[2025-10-21 00:58:45] [AuthService.cs:367] ForgotPasswordAsync 2 | {
+  "Id": "d009438b-3f73-4ceb-aede-4b3036ca9cf3",
+  "UserName": "cmthang2407@gmail.com",
+  "NormalizedUserName": "CMTHANG2407@GMAIL.COM",
+  "Email": "cmthang2407@gmail.com",
+  "NormalizedEmail": "CMTHANG2407@GMAIL.COM",
+  "EmailConfirmed": false,
+  "PasswordHash": "AQAAAAIAAYagAAAAEAIN57YUDNMCDOLaD2rn2s49\u002BXwBw6rPUhvQCFI13WSQPwHK2gkWt3mTWZdVboLu8A==",
+  "SecurityStamp": "BUEMX3K44SSIHKUT4TQGCW524DWU5UA4",
+  "ConcurrencyStamp": "186f8683-2310-4ab6-94a5-91536e0a4d04",
+  "PhoneNumberConfirmed": false,
+  "TwoFactorEnabled": false,
+  "LockoutEnabled": true,
+  "AccessFailedCount": 0
+}
+[2025-10-21 00:58:45] [AuthService.cs:379] ForgotPasswordAsync 3 | wpxCVeUMAhR0L33I16Nx0FqaUWozCGa%2FOdVeAhtpw3WwwuFHPJSYF5zr7%2B9SVMAHVQycsYS6mfTl6oJ7bAMOmKTVkMmFcnIENgcVsGv51BrvkmXhnDmptQ8AviGuJl84VlPrGWNMzWD3HI4keTRZVkOdlvq0vJTmQeHsPyhePL8JG%2B5W5esIbZWgeEUGCQvZ4ljT8ndl6OoQqRhbc7Ntxj2bHn1NyrHFhPBsa4WUMkj21ilaIURsjrtlhdOvNtQ5fBPQDJGHvy%2BVsu3nDPsvgiUpI1vcPIZv3VoiyBgKXhMDAjmoRqCNPW2Vzhj7NSoYo1vXD74whUnnuvWAKIb5zokwnLMefZO1bgXur0vuCknche6paZHtaR%2BM9MaCn1gWvl%2FRK%2BWYkjHDhOm6Vd3gHW7OkKv75v4fBTcQqkpUFq%2Bmma2u%2F2DJ0eGx%2B759DlmIP8R0cOXhGQQpsrCe%2BUpXHLBMFMvIAgpqGyarbOCovvqQZfmIJA1MQh%2BfsCXHUpDhBtpvtnyz3IqNH7IYKJkMyfHSeLsmx8c1RHtzfuIE0SeRxmPYE%2BNWZGa93QhTxqhg
+[2025-10-21 00:58:45] [EmailTemplateService.cs:43] GetTemplateFileName - Enum Value | 0
+[2025-10-21 00:58:45] [EmailTemplateService.cs:44] GetTemplateFileName - Int Value | 0
+[2025-10-21 00:58:45] [EmailTemplateService.cs:57] GetSubject - Enum Value | 0
+[2025-10-21 00:58:45] [EmailTemplateService.cs:58] GetSubject - Int Value | 0
+[2025-10-21 00:58:49] [AuthService.cs:385] ForgotPasswordAsync 4
+[2025-10-21 00:58:52] [AuthViewController.cs:143] ResetPassword - GET token | wpxCVeUMAhR0L33I16Nx0FqaUWozCGa/OdVeAhtpw3WwwuFHPJSYF5zr7+9SVMAHVQycsYS6mfTl6oJ7bAMOmKTVkMmFcnIENgcVsGv51BrvkmXhnDmptQ8AviGuJl84VlPrGWNMzWD3HI4keTRZVkOdlvq0vJTmQeHsPyhePL8JG+5W5esIbZWgeEUGCQvZ4ljT8ndl6OoQqRhbc7Ntxj2bHn1NyrHFhPBsa4WUMkj21ilaIURsjrtlhdOvNtQ5fBPQDJGHvy+Vsu3nDPsvgiUpI1vcPIZv3VoiyBgKXhMDAjmoRqCNPW2Vzhj7NSoYo1vXD74whUnnuvWAKIb5zokwnLMefZO1bgXur0vuCknche6paZHtaR+M9MaCn1gWvl/RK+WYkjHDhOm6Vd3gHW7OkKv75v4fBTcQqkpUFq+mma2u/2DJ0eGx+759DlmIP8R0cOXhGQQpsrCe+UpXHLBMFMvIAgpqGyarbOCovvqQZfmIJA1MQh+fsCXHUpDhBtpvtnyz3IqNH7IYKJkMyfHSeLsmx8c1RHtzfuIE0SeRxmPYE+NWZGa93QhTxqhg
+[2025-10-21 00:59:11] [AuthViewController.cs:143] ResetPassword - GET token | wpxCVeUMAhR0L33I16Nx0FqaUWozCGa/OdVeAhtpw3WwwuFHPJSYF5zr7+9SVMAHVQycsYS6mfTl6oJ7bAMOmKTVkMmFcnIENgcVsGv51BrvkmXhnDmptQ8AviGuJl84VlPrGWNMzWD3HI4keTRZVkOdlvq0vJTmQeHsPyhePL8JG+5W5esIbZWgeEUGCQvZ4ljT8ndl6OoQqRhbc7Ntxj2bHn1NyrHFhPBsa4WUMkj21ilaIURsjrtlhdOvNtQ5fBPQDJGHvy+Vsu3nDPsvgiUpI1vcPIZv3VoiyBgKXhMDAjmoRqCNPW2Vzhj7NSoYo1vXD74whUnnuvWAKIb5zokwnLMefZO1bgXur0vuCknche6paZHtaR+M9MaCn1gWvl/RK+WYkjHDhOm6Vd3gHW7OkKv75v4fBTcQqkpUFq+mma2u/2DJ0eGx+759DlmIP8R0cOXhGQQpsrCe+UpXHLBMFMvIAgpqGyarbOCovvqQZfmIJA1MQh+fsCXHUpDhBtpvtnyz3IqNH7IYKJkMyfHSeLsmx8c1RHtzfuIE0SeRxmPYE+NWZGa93QhTxqhg
+[2025-10-21 01:02:12] [AuthViewController.cs:143] ResetPassword - GET token | wpxCVeUMAhR0L33I16Nx0FqaUWozCGa/OdVeAhtpw3WwwuFHPJSYF5zr7+9SVMAHVQycsYS6mfTl6oJ7bAMOmKTVkMmFcnIENgcVsGv51BrvkmXhnDmptQ8AviGuJl84VlPrGWNMzWD3HI4keTRZVkOdlvq0vJTmQeHsPyhePL8JG+5W5esIbZWgeEUGCQvZ4ljT8ndl6OoQqRhbc7Ntxj2bHn1NyrHFhPBsa4WUMkj21ilaIURsjrtlhdOvNtQ5fBPQDJGHvy+Vsu3nDPsvgiUpI1vcPIZv3VoiyBgKXhMDAjmoRqCNPW2Vzhj7NSoYo1vXD74whUnnuvWAKIb5zokwnLMefZO1bgXur0vuCknche6paZHtaR+M9MaCn1gWvl/RK+WYkjHDhOm6Vd3gHW7OkKv75v4fBTcQqkpUFq+mma2u/2DJ0eGx+759DlmIP8R0cOXhGQQpsrCe+UpXHLBMFMvIAgpqGyarbOCovvqQZfmIJA1MQh+fsCXHUpDhBtpvtnyz3IqNH7IYKJkMyfHSeLsmx8c1RHtzfuIE0SeRxmPYE+NWZGa93QhTxqhg
+[2025-10-21 01:02:17] [AuthViewController.cs:143] ResetPassword - GET token | wpxCVeUMAhR0L33I16Nx0FqaUWozCGa/OdVeAhtpw3WwwuFHPJSYF5zr7+9SVMAHVQycsYS6mfTl6oJ7bAMOmKTVkMmFcnIENgcVsGv51BrvkmXhnDmptQ8AviGuJl84VlPrGWNMzWD3HI4keTRZVkOdlvq0vJTmQeHsPyhePL8JG+5W5esIbZWgeEUGCQvZ4ljT8ndl6OoQqRhbc7Ntxj2bHn1NyrHFhPBsa4WUMkj21ilaIURsjrtlhdOvNtQ5fBPQDJGHvy+Vsu3nDPsvgiUpI1vcPIZv3VoiyBgKXhMDAjmoRqCNPW2Vzhj7NSoYo1vXD74whUnnuvWAKIb5zokwnLMefZO1bgXur0vuCknche6paZHtaR+M9MaCn1gWvl/RK+WYkjHDhOm6Vd3gHW7OkKv75v4fBTcQqkpUFq+mma2u/2DJ0eGx+759DlmIP8R0cOXhGQQpsrCe+UpXHLBMFMvIAgpqGyarbOCovvqQZfmIJA1MQh+fsCXHUpDhBtpvtnyz3IqNH7IYKJkMyfHSeLsmx8c1RHtzfuIE0SeRxmPYE+NWZGa93QhTxqhg
+[2025-10-21 01:02:26] [AuthViewController.cs:143] ResetPassword - GET token | wpxCVeUMAhR0L33I16Nx0FqaUWozCGa/OdVeAhtpw3WwwuFHPJSYF5zr7+9SVMAHVQycsYS6mfTl6oJ7bAMOmKTVkMmFcnIENgcVsGv51BrvkmXhnDmptQ8AviGuJl84VlPrGWNMzWD3HI4keTRZVkOdlvq0vJTmQeHsPyhePL8JG+5W5esIbZWgeEUGCQvZ4ljT8ndl6OoQqRhbc7Ntxj2bHn1NyrHFhPBsa4WUMkj21ilaIURsjrtlhdOvNtQ5fBPQDJGHvy+Vsu3nDPsvgiUpI1vcPIZv3VoiyBgKXhMDAjmoRqCNPW2Vzhj7NSoYo1vXD74whUnnuvWAKIb5zokwnLMefZO1bgXur0vuCknche6paZHtaR+M9MaCn1gWvl/RK+WYkjHDhOm6Vd3gHW7OkKv75v4fBTcQqkpUFq+mma2u/2DJ0eGx+759DlmIP8R0cOXhGQQpsrCe+UpXHLBMFMvIAgpqGyarbOCovvqQZfmIJA1MQh+fsCXHUpDhBtpvtnyz3IqNH7IYKJkMyfHSeLsmx8c1RHtzfuIE0SeRxmPYE+NWZGa93QhTxqhg
+[2025-10-21 01:02:56] [AuthViewController.cs:160] ResetPassword - POST model | {
+  "Token": "****",
+  "NewPassword": "123456",
+  "ConfirmPassword": "123456"
+}
+[2025-10-21 01:02:56] [AuthService.cs:393] ResetPasswordAsync 1 | {
+  "Token": "****",
+  "NewPassword": "123456",
+  "ConfirmPassword": "123456"
+}
+[2025-10-21 01:02:57] [AuthService.cs:400] ✅ Validate Result: | OK
+[2025-10-21 01:02:57] [AuthService.cs:440] ✅ Password reset successfully for user | cmthang2407@gmail.com

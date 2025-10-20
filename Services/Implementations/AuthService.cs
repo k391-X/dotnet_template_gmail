@@ -76,7 +76,10 @@ namespace SmtpGmailDemo.Services.Implementations
 
             // 2️⃣ Sinh token xác thực mới
             var encryptedToken = await GenerateAndStoreTokenAsync(user);
+
+            // Mã hóa các kí tự đặc biệt để truyền qua url
             var encodedToken = Uri.EscapeDataString(encryptedToken);
+
             var confirmUrl = $"http://localhost:7042/verify?token={encodedToken}";
 
             // 3️⃣ Gửi email xác thực
@@ -208,7 +211,13 @@ namespace SmtpGmailDemo.Services.Implementations
          private async Task<string> GenerateAndStoreTokenForgotPasswordAsync(ApplicationUser user)
         {
             var token = GenerateJwtToken(user);
+
+            // Mã hóa 1 lần với token
             var encryptedToken = TokenEncryptor.Encrypt(token);
+
+            // Mã hóa để gửi token qua string url không bị sai các kí tự đặc biệt
+            var encodedToken = Uri.EscapeDataString(encryptedToken);
+
             var minuteLifeTimeToken = 30;
 
             _context.CustomUserTokens.Add(new CustomUserToken
@@ -223,7 +232,7 @@ namespace SmtpGmailDemo.Services.Implementations
             });
 
             await _context.SaveChangesAsync();
-            return encryptedToken;
+            return encodedToken;
         }
 
         // Validate token
@@ -282,10 +291,13 @@ namespace SmtpGmailDemo.Services.Implementations
             }
         }
 
-        public async Task<IdentityResult> ConfirmEmailAsync(string encryptedToken)
+        public async Task<IdentityResult> ConfirmEmailAsync(string encodedToken)
         {
             try
             {
+                // Giải mã token từ URL -> đưa các kí tự đặc biệt trở lại
+                var encryptedToken = Uri.UnescapeDataString(encodedToken);
+
                 // 1️⃣ Validate token (đảm bảo chưa hết hạn, đúng loại)
                 var dbTokenResult = await ValidateStoredTokenAsync(encryptedToken, TokenType.VerifyEmail);
 
@@ -363,10 +375,10 @@ namespace SmtpGmailDemo.Services.Implementations
             await _context.SaveChangesAsync();
 
             // 2️⃣ Sinh token thay đổi mật khẩu mới
-            var encryptedToken = await GenerateAndStoreTokenForgotPasswordAsync(user);
-            Logger.Log("ForgotPasswordAsync 3", encryptedToken);
+            var encodedToken = await GenerateAndStoreTokenForgotPasswordAsync(user);
+            Logger.Log("ForgotPasswordAsync 3", encodedToken);
 
-            var resetPasswordUrl = $"http://localhost:7042/reset-password?email={model.Email}&token={encryptedToken}";
+            var resetPasswordUrl = $"http://localhost:7042/reset-password?email={model.Email}&token={encodedToken}";
 
             // 3️⃣ Gửi email chứa token để reset password
             await SendForgotPasswordAsync(user, resetPasswordUrl);
@@ -376,13 +388,57 @@ namespace SmtpGmailDemo.Services.Implementations
             return resetPasswordUrl;
         }
 
-        public async Task<IdentityResult> ResetPasswordAsync(ResetPassword model)
+        public async Task<IdentityResult> ResetPasswordAsync(ResetPasswordViewModel model)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null) return IdentityResult.Failed(new IdentityError { Description = "User not found" });
+            Logger.Log("ResetPasswordAsync 1", model);
 
-            var decodedToken = System.Net.WebUtility.UrlDecode(model.Token);
-            return await _userManager.ResetPasswordAsync(user, decodedToken, model.NewPassword);
+            // ✅ 1️⃣ Giải mã token từ URL (nếu trước đó đã dùng EscapeDataString để mã hóa)
+            var decodedToken = Uri.UnescapeDataString(model.Token);
+
+            // ✅ 2️⃣ Kiểm tra token trong DB (đảm bảo hợp lệ & chưa hết hạn)
+            var dbTokenResult = await ValidateStoredTokenAsync(decodedToken, TokenType.ResetPassword);
+            Logger.Log("✅ Validate Result:", dbTokenResult.Succeeded ? "OK" : "FAILED");
+
+            if (!dbTokenResult.Succeeded)
+            {
+                foreach (var err in dbTokenResult.Errors)
+                    Logger.Log("❌ Validate Error:", $"{err.Code} - {err.Description}");
+                return dbTokenResult;
+            }
+
+            // ✅ 3️⃣ Lấy token từ DB
+            var dbToken = await _context.CustomUserTokens
+                .FirstOrDefaultAsync(t => t.EncryptedToken == decodedToken);
+
+            if (dbToken == null)
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Token không tồn tại trong DB."
+                });
+
+            // ✅ 4️⃣ Lấy user tương ứng
+            var user = await _userManager.FindByIdAsync(dbToken.UserId);
+            if (user == null)
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "User không tồn tại."
+                });
+
+            // ✅ 5️⃣ Mã hóa mật khẩu mới
+            var hashedPassword = _userManager.PasswordHasher.HashPassword(user, model.NewPassword);
+            user.PasswordHash = hashedPassword;
+
+            // ✅ 6️⃣ Lưu thay đổi vào DB
+            var updateResult = await _userManager.UpdateAsync(user);
+            if (!updateResult.Succeeded)
+                return updateResult;
+
+            // ✅ 7️⃣ Xóa token sau khi dùng (tránh reuse)
+            _context.CustomUserTokens.Remove(dbToken);
+            await _context.SaveChangesAsync();
+
+            Logger.Log("✅ Password reset successfully for user", user.Email);
+            return IdentityResult.Success;
         }
 
         private string GenerateJwtToken(ApplicationUser user)

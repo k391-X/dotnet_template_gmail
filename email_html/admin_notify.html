@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thông báo đơn hàng mới - Công nghệ THT</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .invoice-container {
+      background-color: #ffffff;
+      max-width: 600px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      margin: 0 auto;
+    }
+
+    h2 {
+      background: #0455A4;
+      color: #ffffff;
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: none;
+      border-right: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: none;
+    }
+
+    th {
+      background-color: #0455A4;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+
+    .total {
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .button {
+      background-color: #0455A4;
+      color: white !important;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hiệu ứng khi hover */
+    .button:hover {
+      background-color: #023a73; /* màu xanh đậm hơn */
+      transform: scale(1.05);    /* phóng to nhẹ */
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Một số client mail (ví dụ Outlook) không hỗ trợ :hover, nên thêm màu nổi bật sẵn */
+    a.button:active,
+    a.button:focus {
+      background-color: #023a73 !important;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <h2>Thông báo đơn hàng mới</h2>
+
+    <div style="padding-left: 10px; padding-right: 10px;">
+      <div style="margin-top: 20px;">Khách hàng: <strong>Nguyễn Văn A</strong></div>
+      <div style="margin-top: 20px;">Email: <strong>nva@gmail.com</strong></div>
+
+      <div style="margin-top: 20px;">
+        Mã hóa đơn:
+        <a class="button" href="https://congnghetht.com.vn/history/role=admin&code=HD123456" target="_blank">HD123456</a>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên hàng hóa</th>
+          <th>ĐVT</th>
+          <th>SL</th>
+          <th>Đơn giá</th>
+          <th>Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Bộ định tuyến Wifi 6 Asus RT-AX3000</td>
+          <td>Cái</td>
+          <td>1</td>
+          <td>2.490.000</td>
+          <td>2.490.000</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Bộ lưu điện UPS Santak 1000VA</td>
+          <td>Cái</td>
+          <td>1</td>
+          <td>1.290.000</td>
+          <td>1.290.000</td>
+        </tr>
+        <tr>
+          <td colspan="4" class="total">Tổng cộng:</td>
+          <td colspan="2" style="font-size:18px; font-weight:bold;">3.780.000đ</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Ngày đặt hàng: <strong>27/10/2025</strong></p>
+  </div>
+
+  <!-- FOOTER thương hiệu -->
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #0054A5ED; background-image: url('http://congnghetht.com.vn/wp-content/uploads/2025/10/blob-1-scaled.png'); background-repeat: no-repeat; background-position: center bottom; background-size: cover; color: #ffffff; font-family: Arial,sans-serif; padding: 20px 0; border-radius: 2px; margin-top: 40px;">
+    <tr>
+      <td align="center">
+        <table width="800" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+          <tr>
+            <!-- Logo + mô tả -->
+            <td width="50%" valign="top" style="
+              padding:14px 30px 14px 0;
+              text-align:right;
+              border-right:1px solid rgba(255,255,255,0.2);
+            ">
+              <div style="display: flex; justify-content: end;">
+                <div style="width:280px; text-align: left;">
+                  <img
+                    src="http://congnghetht.com.vn/wp-content/uploads/2022/12/Logo-1-1024x625.jpg"
+                    alt="Logo"
+                    width="180"
+                    style="display:block;margin-bottom:10px;border-radius:4px;">
+                  <p style="margin:0;font-size:15px;line-height:1.5;color:#f1f1f1;">
+                    THT hoạt động trong lĩnh vực cung cấp các giải pháp, phần mềm, thiết bị và dịch vụ công nghệ thông tin theo nhu cầu của khách hàng.
+                  </p>
+                </div>
+              </div>
+            </td>
+            
+            <!-- Thông tin liên hệ -->
+            <td width="50%" valign="top" style="padding:14px 0 14px 30px; text-align:left;">
+              <p style="margin:0 0 8px 0;font-size:22px;font-weight:bold;color:#ffffff; max-width:280px;">Thông tin liên hệ</p>
+              <p style="margin:0 0 8px 0;font-size:18px;color:#ffffff; max-width:280px;">📞 (+84) 987 15 6688</p>
+              <p style="margin:0 0 8px 0;font-size:18px;color:#ffffff; max-width:280px;">✉️ <a href="mailto:Anhtuan.cntht@gmail.com" style="color:#ffffff;text-decoration:none;font-weight:bold;">Anhtuan.cntht@gmail.com</a></p>
+              <p style="margin:0 0 8px 0;font-size:18px;color:#ffffff; max-width:280px;">📍 Tòa Elcom, ngõ 15 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, Hà Nội</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
